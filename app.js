@@ -53,16 +53,19 @@ const iconMap = {
   '.msi':  { icon: 'fas fa-file-download', label: 'MSI' },
   '.deb':  { icon: 'fab fa-debian',         label: 'DEB' },
   '.appimage': { icon: 'fas fa-cube',       label: 'AppImage' },
+  '.rpm':  { icon: 'fas fa-cube',           label: 'RPM' },
   '.dmg':  { icon: 'fab fa-apple',          label: 'DMG' },
+  '.tar.gz': { icon: 'fas fa-archive',      label: 'macOS Intel' },
 };
 
 const platformMatchers = {
   'dl-windows': [/\.exe$/i, /\.msi$/i],
-  'dl-linux':   [/\.deb$/i, /\.appimage$/i],
-  'dl-macos':   [/\.dmg$/i],
+  'dl-linux':   [/\.deb$/i, /\.appimage$/i, /\.rpm$/i],
+  'dl-macos':   [/\.dmg$/i, /\.tar\.gz$/i],
 };
 
 function getExt(name) {
+  if (name.endsWith('.tar.gz')) return '.tar.gz';
   const idx = name.lastIndexOf('.');
   return idx !== -1 ? name.slice(idx).toLowerCase() : '';
 }
