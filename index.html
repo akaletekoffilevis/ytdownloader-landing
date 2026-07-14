@@ -1,282 +1,503 @@
 <!DOCTYPE html>
-<html lang="fr">
+<html lang="fr" class="scroll-smooth">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>YouTube Downloader — Téléchargez vos vidéos préférées</title>
+<title>YT Downloader — Téléchargez vos vidéos YouTube</title>
 <meta name="description" content="Application de bureau gratuite pour télécharger des vidéos YouTube en haute qualité. Simple, rapide et élégante.">
 <link rel="icon" type="image/svg+xml" href="assets/logo.svg">
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="style.css">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+<script src="https://cdn.tailwindcss.com"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<script>
+tailwind.config = {
+  theme: {
+    extend: {
+      fontFamily: { sans: ['Inter', 'system-ui', 'sans-serif'] },
+      colors: {
+        brand: { 50:'#eef2ff',100:'#e0e7ff',200:'#c7d2fe',300:'#a5b4fc',400:'#818cf8',500:'#6366f1',600:'#4f46e5',700:'#4338ca',800:'#3730a3',900:'#312e81' },
+      },
+      animation: {
+        'fade-up': 'fadeUp 0.6s ease-out forwards',
+        'fade-in': 'fadeIn 0.5s ease-out forwards',
+        'slide-right': 'slideRight 0.5s ease-out forwards',
+        'glow': 'glow 3s ease-in-out infinite alternate',
+        'float': 'float 6s ease-in-out infinite',
+      },
+      keyframes: {
+        fadeUp: { '0%': { opacity:'0', transform:'translateY(30px)' }, '100%': { opacity:'1', transform:'translateY(0)' }},
+        fadeIn: { '0%': { opacity:'0' }, '100%': { opacity:'1' }},
+        slideRight: { '0%': { opacity:'0', transform:'translateX(-20px)' }, '100%': { opacity:'1', transform:'translateX(0)' }},
+        glow: { '0%': { boxShadow:'0 0 20px rgba(99,102,241,0.1)' }, '100%': { boxShadow:'0 0 40px rgba(99,102,241,0.2)' }},
+        float: { '0%,100%': { transform:'translateY(0)' }, '50%': { transform:'translateY(-10px)' }},
+      }
+    }
+  }
+}
+</script>
+<style>
+  [data-page] { display: none; }
+  [data-page].active { display: block; }
+  .reveal { opacity: 0; transform: translateY(30px); transition: all 0.6s cubic-bezier(.16,1,.3,1); }
+  .reveal.visible { opacity: 1; transform: translateY(0); }
+  .glass { background: rgba(255,255,255,0.03); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); border: 1px solid rgba(255,255,255,0.06); }
+  .gradient-text { background: linear-gradient(135deg, #e0e7ff 0%, #818cf8 50%, #6366f1 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+  .gradient-border { position:relative; } .gradient-border::before { content:''; position:absolute; inset:-1px; border-radius:inherit; padding:1px; background:linear-gradient(135deg,#818cf8,transparent); -webkit-mask:linear-gradient(#fff 0 0) content-box,linear-gradient(#fff 0 0); mask:linear-gradient(#fff 0 0) content-box,linear-gradient(#fff 0 0); -webkit-mask-composite:xor; mask-composite:exclude; pointer-events:none; }
+  .screenshot-frame { background: linear-gradient(135deg, rgba(99,102,241,0.08), rgba(139,92,246,0.05)); border: 1px solid rgba(255,255,255,0.08); border-radius: 12px; padding: 8px; }
+  .screenshot-inner { border-radius: 8px; overflow: hidden; background: #0f0f1a; aspect-ratio: 16/10; display:flex; align-items:center; justify-content:center; }
+  .screenshot-inner img { width:100%; height:100%; object-fit:cover; }
+  .screenshot-placeholder { color: rgba(255,255,255,0.15); font-size: 14px; text-align:center; padding: 20px; }
+  .stat-card:hover .stat-num { color: #818cf8; }
+  .dl-card { transition: all 0.25s ease; }
+  .dl-card:hover { transform: translateY(-4px); box-shadow: 0 12px 40px rgba(99,102,241,0.12); border-color: rgba(129,140,248,0.3); }
+  .nav-link { position:relative; } .nav-link::after { content:''; position:absolute; bottom:-2px; left:0; width:0; height:2px; background:#818cf8; transition:width 0.3s; } .nav-link:hover::after, .nav-link.active::after { width:100%; }
+  ::-webkit-scrollbar { width:6px; } ::-webkit-scrollbar-track { background:#0a0a14; } ::-webkit-scrollbar-thumb { background:rgba(129,140,248,0.3); border-radius:3px; }
+</style>
 </head>
-<body>
+<body class="bg-[#0a0a14] text-white font-sans antialiased">
 
-<!-- NAV -->
-<nav class="nav" id="nav">
-  <div class="nav-inner">
-    <a href="#" class="nav-logo">
-      <img src="assets/logo.svg" alt="Logo" width="36" height="36">
-      <span>YT Downloader</span>
-    </a>
-    <div class="nav-links" id="nav-links">
-      <a href="#features" data-fr="Fonctionnalités" data-en="Features">Fonctionnalités</a>
-      <a href="#how" data-fr="Comment ça marche" data-en="How it works">Comment ça marche</a>
-      <a href="#download" data-fr="Télécharger" data-en="Download">Télécharger</a>
-      <a href="#faq" data-fr="FAQ" data-en="FAQ">FAQ</a>
+<!-- ========== NAV ========== -->
+<nav id="navbar" class="fixed top-0 left-0 right-0 z-50 transition-all duration-300">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="flex items-center justify-between h-16">
+      <a href="#" onclick="navigate('home')" class="flex items-center gap-3 group">
+        <img src="assets/logo.svg" alt="Logo" class="w-8 h-8 rounded-lg group-hover:scale-110 transition-transform">
+        <span class="font-bold text-lg text-white">YT Downloader</span>
+      </a>
+      <div class="hidden md:flex items-center gap-1" id="nav-links">
+        <a href="#" onclick="navigate('home')" class="nav-link px-4 py-2 text-sm font-medium text-gray-300 hover:text-white transition-colors rounded-lg" data-page-link="home" data-fr="Accueil" data-en="Home">Accueil</a>
+        <a href="#" onclick="navigate('features')" class="nav-link px-4 py-2 text-sm font-medium text-gray-300 hover:text-white transition-colors rounded-lg" data-page-link="features" data-fr="Fonctionnalités" data-en="Features">Fonctionnalités</a>
+        <a href="#" onclick="navigate('download')" class="nav-link px-4 py-2 text-sm font-medium text-gray-300 hover:text-white transition-colors rounded-lg" data-page-link="download" data-fr="Télécharger" data-en="Download">Télécharger</a>
+        <a href="#" onclick="navigate('about')" class="nav-link px-4 py-2 text-sm font-medium text-gray-300 hover:text-white transition-colors rounded-lg" data-page-link="about" data-fr="À propos" data-en="About">À propos</a>
+      </div>
+      <div class="flex items-center gap-3">
+        <button onclick="toggleLang()" class="px-3 py-1.5 text-xs font-semibold rounded-lg bg-white/5 border border-white/10 text-gray-300 hover:bg-brand-500 hover:text-white hover:border-brand-500 transition-all" id="lang-btn">EN</button>
+        <a href="https://github.com/akaletekoffilevis/youtube-downloader" target="_blank" class="hidden sm:flex items-center gap-2 px-3 py-1.5 text-xs font-semibold rounded-lg bg-white/5 border border-white/10 text-gray-300 hover:bg-white/10 transition-all">
+          <i class="fab fa-github"></i> GitHub
+        </a>
+        <button onclick="toggleMobile()" class="md:hidden p-2 rounded-lg hover:bg-white/5" id="hamburger-btn">
+          <i class="fas fa-bars text-gray-300 text-lg" id="hamburger-icon"></i>
+        </button>
+      </div>
     </div>
-    <div class="nav-right">
-      <button id="lang-toggle" class="lang-toggle">EN</button>
-      <button id="hamburger" class="hamburger" aria-label="Menu">
-        <span></span><span></span><span></span>
-      </button>
+  </div>
+  <!-- Mobile menu -->
+  <div id="mobile-menu" class="md:hidden hidden">
+    <div class="px-4 py-4 space-y-1 glass mx-4 mb-4 rounded-xl">
+      <a href="#" onclick="navigate('home');toggleMobile()" class="block px-4 py-3 rounded-lg text-sm font-medium text-gray-300 hover:bg-white/5 hover:text-white transition-colors" data-fr="Accueil" data-en="Home">Accueil</a>
+      <a href="#" onclick="navigate('features');toggleMobile()" class="block px-4 py-3 rounded-lg text-sm font-medium text-gray-300 hover:bg-white/5 hover:text-white transition-colors" data-fr="Fonctionnalités" data-en="Features">Fonctionnalités</a>
+      <a href="#" onclick="navigate('download');toggleMobile()" class="block px-4 py-3 rounded-lg text-sm font-medium text-gray-300 hover:bg-white/5 hover:text-white transition-colors" data-fr="Télécharger" data-en="Download">Télécharger</a>
+      <a href="#" onclick="navigate('about');toggleMobile()" class="block px-4 py-3 rounded-lg text-sm font-medium text-gray-300 hover:bg-white/5 hover:text-white transition-colors" data-fr="À propos" data-en="About">À propos</a>
+      <a href="https://github.com/akaletekoffilevis/youtube-downloader" target="_blank" class="block px-4 py-3 rounded-lg text-sm font-medium text-gray-300 hover:bg-white/5 hover:text-white transition-colors"><i class="fab fa-github mr-2"></i> GitHub</a>
     </div>
   </div>
 </nav>
 
-<!-- HERO -->
-<section class="hero">
-  <div class="hero-bg"></div>
-  <div class="hero-inner">
-    <div class="hero-badge">v0.2.0 — Open Source</div>
-    <h1 class="hero-title" data-fr="Téléchargez vos vidéos YouTube" data-en="Download your YouTube videos">Téléchargez vos vidéos YouTube</h1>
-    <p class="hero-sub" data-fr="Application de bureau rapide, élégante et totalement gratuite. Tout est intégré, aucune dépendance requise. Construite avec Tauri 2." data-en="A fast, elegant and completely free desktop app. Everything is bundled, no dependencies required. Built with Tauri 2.">Application de bureau rapide, élégante et totalement gratuite. Tout est intégré, aucune dépendance requise. Construite avec Tauri 2.</p>
-    <div class="hero-actions">
-      <a href="#download" class="btn btn-primary">
-        <i class="fas fa-download"></i>
-        <span data-fr="Télécharger" data-en="Download">Télécharger</span>
+<!-- ========== PAGE: HOME ========== -->
+<div data-page="home" class="active">
+
+<!-- Hero -->
+<section class="relative min-h-screen flex items-center justify-center overflow-hidden pt-16">
+  <div class="absolute inset-0">
+    <div class="absolute top-1/4 left-1/2 -translate-x-1/2 w-[800px] h-[600px] bg-brand-500/10 rounded-full blur-[120px]"></div>
+    <div class="absolute bottom-0 left-1/4 w-[400px] h-[400px] bg-purple-500/5 rounded-full blur-[100px]"></div>
+  </div>
+  <div class="relative max-w-5xl mx-auto px-4 text-center">
+    <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full glass text-xs font-medium text-gray-300 mb-8 animate-fade-up">
+      <span class="w-2 h-2 bg-green-400 rounded-full animate-pulse"></span>
+      v0.2.0 — <span data-fr="Open Source & Gratuit" data-en="Open Source & Free">Open Source & Gratuit</span>
+    </div>
+    <h1 class="text-5xl sm:text-6xl lg:text-7xl font-black tracking-tight leading-[1.05] mb-6 animate-fade-up" style="animation-delay:0.1s">
+      <span class="gradient-text" data-fr="Téléchargez vos vidéos YouTube" data-en="Download your YouTube videos">Téléchargez vos vidéos YouTube</span>
+    </h1>
+    <p class="text-lg sm:text-xl text-gray-400 max-w-2xl mx-auto mb-10 leading-relaxed animate-fade-up" style="animation-delay:0.2s" data-fr="Application de bureau rapide, élégante et totalement gratuite. Tout est intégré — aucune dépendance externe requise." data-en="A fast, elegant and completely free desktop app. Everything is bundled — no external dependencies required.">
+      Application de bureau rapide, élégante et totalement gratuite. Tout est intégré — aucune dépendance externe requise.
+    </p>
+    <div class="flex flex-col sm:flex-row items-center justify-center gap-4 mb-12 animate-fade-up" style="animation-delay:0.3s">
+      <a href="#" onclick="navigate('download')" class="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-8 py-4 bg-brand-500 hover:bg-brand-600 text-white font-semibold rounded-xl transition-all hover:shadow-[0_0_30px_rgba(99,102,241,0.3)] hover:-translate-y-0.5">
+        <i class="fas fa-download"></i> <span data-fr="Télécharger" data-en="Download">Télécharger</span>
       </a>
-      <a href="#features" class="btn btn-ghost" data-fr="En savoir plus" data-en="Learn more">En savoir plus</a>
+      <a href="https://github.com/akaletekoffilevis/youtube-downloader" target="_blank" class="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-8 py-4 bg-white/5 hover:bg-white/10 text-white font-semibold rounded-xl border border-white/10 hover:border-white/20 transition-all">
+        <i class="fab fa-github"></i> GitHub
+      </a>
     </div>
-    <div class="hero-platforms">
-      <span><i class="fab fa-windows"></i> Windows</span>
-      <span><i class="fab fa-linux"></i> Linux</span>
-      <span><i class="fab fa-apple"></i> macOS</span>
+    <div class="flex items-center justify-center gap-8 text-sm text-gray-500 animate-fade-up" style="animation-delay:0.4s">
+      <span class="flex items-center gap-2"><i class="fab fa-windows text-gray-400"></i> Windows</span>
+      <span class="flex items-center gap-2"><i class="fab fa-linux text-gray-400"></i> Linux</span>
+      <span class="flex items-center gap-2"><i class="fab fa-apple text-gray-400"></i> macOS</span>
     </div>
   </div>
 </section>
 
-<!-- FEATURES -->
-<section id="features" class="features">
-  <div class="section-inner">
-    <h2 class="section-title" data-fr="Fonctionnalités" data-en="Features">Fonctionnalités</h2>
-    <p class="section-sub" data-fr="Tout ce dont vous avez besoin pour télécharger vos vidéos préférées" data-en="Everything you need to download your favorite videos">Tout ce dont vous avez besoin pour télécharger vos vidéos préférées</p>
-    <div class="features-grid">
-      <div class="feature-card">
-        <div class="feature-icon"><i class="fas fa-search"></i></div>
-        <h3 data-fr="Recherche rapide" data-en="Fast search">Recherche rapide</h3>
-        <p data-fr="Trouvez n'importe quelle vidéo avec une recherche YouTube intégrée. Jusqu'à 100 résultats en un instant." data-en="Find any video with built-in YouTube search. Up to 100 results instantly.">Trouvez n'importe quelle vidéo avec une recherche YouTube intégrée. Jusqu'à 100 résultats en un instant.</p>
+<!-- Stats -->
+<section class="py-16 border-t border-white/5">
+  <div class="max-w-5xl mx-auto px-4">
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
+      <div class="stat-card text-center p-6 rounded-2xl glass reveal">
+        <div class="stat-num text-3xl font-black gradient-text transition-colors mb-1">7</div>
+        <div class="text-xs text-gray-500 font-medium uppercase tracking-wider" data-fr="Formats" data-en="Formats">Formats</div>
       </div>
-      <div class="feature-card">
-        <div class="feature-icon"><i class="fas fa-layer-group"></i></div>
-        <h3 data-fr="File d'attente intelligente" data-en="Smart queue">File d'attente intelligente</h3>
-        <p data-fr="1 à 5 téléchargements simultanés. Pause, reprise et annulation de chaque téléchargement individuellement." data-en="1 to 5 simultaneous downloads. Pause, resume and cancel each download individually.">1 à 5 téléchargements simultanés. Pause, reprise et annulation de chaque téléchargement individuellement.</p>
+      <div class="stat-card text-center p-6 rounded-2xl glass reveal" style="transition-delay:0.1s">
+        <div class="stat-num text-3xl font-black gradient-text transition-colors mb-1">3</div>
+        <div class="text-xs text-gray-500 font-medium uppercase tracking-wider" data-fr="Plateformes" data-en="Platforms">Plateformes</div>
       </div>
-      <div class="feature-card">
-        <div class="feature-icon"><i class="fas fa-sliders"></i></div>
-        <h3 data-fr="Choix de qualité" data-en="Quality picker">Choix de qualité</h3>
-        <p data-fr="1080p, 720p, 480p, 360p ou Audio MP3. Vous choisissez la qualité qui vous convient." data-en="1080p, 720p, 480p, 360p or Audio MP3. You choose the quality that suits you.">1080p, 720p, 480p, 360p ou Audio MP3. Vous choisissez la qualité qui vous convient.</p>
+      <div class="stat-card text-center p-6 rounded-2xl glass reveal" style="transition-delay:0.2s">
+        <div class="stat-num text-3xl font-black gradient-text transition-colors mb-1">2</div>
+        <div class="text-xs text-gray-500 font-medium uppercase tracking-wider" data-fr="Thèmes" data-en="Themes">Thèmes</div>
       </div>
-      <div class="feature-card">
-        <div class="feature-icon"><i class="fas fa-palette"></i></div>
-        <h3 data-fr="Thème clair & sombre" data-en="Light & dark theme">Thème clair & sombre</h3>
-        <p data-fr="Design glassmorphism premium avec deux thèmes. Passage instantané d'un thème à l'autre." data-en="Premium glassmorphism design with two themes. Instant switch between themes.">Design glassmorphism premium avec deux thèmes. Passage instantané d'un thème à l'autre.</p>
-      </div>
-      <div class="feature-card">
-        <div class="feature-icon"><i class="fas fa-language"></i></div>
-        <h3 data-fr="Bilingue FR/EN" data-en="Bilingual FR/EN">Bilingue FR/EN</h3>
-        <p data-fr="Interface disponible en français et en anglais. Changez de langue en un clic." data-en="Interface available in French and English. Switch languages with one click.">Interface disponible en français et en anglais. Changez de langue en un clic.</p>
-      </div>
-      <div class="feature-card">
-        <div class="feature-icon"><i class="fas fa-folder-open"></i></div>
-        <h3 data-fr="Dossier personnalisé" data-en="Custom folder">Dossier personnalisé</h3>
-        <p data-fr="Choisissez où sauvegarder vos téléchargements. Sélecteur de dossier natif intégré." data-en="Choose where to save your downloads. Built-in native folder picker.">Choisissez où sauvegarder vos téléchargements. Sélecteur de dossier natif intégré.</p>
+      <div class="stat-card text-center p-6 rounded-2xl glass reveal" style="transition-delay:0.3s">
+        <div class="stat-num text-3xl font-black gradient-text transition-colors mb-1">0</div>
+        <div class="text-xs text-gray-500 font-medium uppercase tracking-wider" data-fr="Dépendances" data-en="Dependencies">Dépendances</div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- HOW IT WORKS -->
-<section id="how" class="how">
-  <div class="section-inner">
-    <h2 class="section-title" data-fr="Comment ça marche" data-en="How it works">Comment ça marche</h2>
-    <p class="section-sub" data-fr="Trois étapes simples pour commencer" data-en="Three simple steps to get started">Trois étapes simples pour commencer</p>
-    <div class="how-grid">
-      <div class="how-step">
-        <div class="how-num">1</div>
-        <h3 data-fr="Installez l'app" data-en="Install the app">Installez l'app</h3>
-        <p data-fr="Téléchargez et installez l'application. yt-dlp est intégré, rien d'autre à faire." data-en="Download and install the app. yt-dlp is bundled, nothing else to do.">Téléchargez et installez l'application. yt-dlp est intégré, rien d'autre à faire.</p>
+<!-- Features Preview -->
+<section class="py-24">
+  <div class="max-w-6xl mx-auto px-4">
+    <div class="text-center mb-16">
+      <h2 class="text-3xl sm:text-4xl font-black gradient-text mb-4 reveal" data-fr="Tout est intégré" data-en="Everything is bundled">Tout est intégré</h2>
+      <p class="text-gray-400 text-lg max-w-xl mx-auto reveal" style="transition-delay:0.1s" data-fr="Zéro configuration, zéro dépendance. Installez et utilisez." data-en="Zero config, zero dependencies. Install and use.">Zéro configuration, zéro dépendance. Installez et utilisez.</p>
+    </div>
+    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-5">
+      <div class="reveal group p-6 rounded-2xl glass hover:bg-white/[0.04] transition-all hover:-translate-y-1" style="transition-delay:0s">
+        <div class="w-12 h-12 rounded-xl bg-brand-500/10 flex items-center justify-center mb-4 group-hover:bg-brand-500/20 transition-colors">
+          <i class="fas fa-search text-brand-400 text-lg"></i>
+        </div>
+        <h3 class="font-bold text-white mb-2" data-fr="Recherche intégrée" data-en="Built-in search">Recherche intégrée</h3>
+        <p class="text-sm text-gray-400 leading-relaxed" data-fr="Cherchez directement dans l'application. Jusqu'à 100 résultats en un instant." data-en="Search right inside the app. Up to 100 results instantly.">Cherchez directement dans l'application. Jusqu'à 100 résultats en un instant.</p>
       </div>
-      <div class="how-step">
-        <div class="how-num">2</div>
-        <h3 data-fr="Collez l'URL" data-en="Paste the URL">Collez l'URL</h3>
-        <p data-fr="Cherchez ou collez directement un lien YouTube. L'application récupère les formats disponibles." data-en="Search or paste a YouTube link directly. The app fetches available formats.">Cherchez ou collez directement un lien YouTube. L'application récupère les formats disponibles.</p>
+      <div class="reveal group p-6 rounded-2xl glass hover:bg-white/[0.04] transition-all hover:-translate-y-1" style="transition-delay:0.05s">
+        <div class="w-12 h-12 rounded-xl bg-brand-500/10 flex items-center justify-center mb-4 group-hover:bg-brand-500/20 transition-colors">
+          <i class="fas fa-layer-group text-brand-400 text-lg"></i>
+        </div>
+        <h3 class="font-bold text-white mb-2" data-fr="File d'attente" data-en="Download queue">File d'attente</h3>
+        <p class="text-sm text-gray-400 leading-relaxed" data-fr="1 à 5 téléchargements simultanés. Pause, reprise, annulation." data-en="1 to 5 simultaneous downloads. Pause, resume, cancel.">1 à 5 téléchargements simultanés. Pause, reprise, annulation.</p>
       </div>
-      <div class="how-step">
-        <div class="how-num">3</div>
-        <h3 data-fr="Téléchargez" data-en="Download">Téléchargez</h3>
-        <p data-fr="Choisissez la qualité et lancez le téléchargement. C'est tout." data-en="Choose the quality and start downloading. That's it.">Choisissez la qualité et lancez le téléchargement. C'est tout.</p>
+      <div class="reveal group p-6 rounded-2xl glass hover:bg-white/[0.04] transition-all hover:-translate-y-1" style="transition-delay:0.1s">
+        <div class="w-12 h-12 rounded-xl bg-brand-500/10 flex items-center justify-center mb-4 group-hover:bg-brand-500/20 transition-colors">
+          <i class="fas fa-sliders text-brand-400 text-lg"></i>
+        </div>
+        <h3 class="font-bold text-white mb-2" data-fr="Choix de qualité" data-en="Quality picker">Choix de qualité</h3>
+        <p class="text-sm text-gray-400 leading-relaxed" data-fr="1080p, 720p, 480p, 360p ou Audio MP3. Vous choisissez." data-en="1080p, 720p, 480p, 360p or Audio MP3. You choose.">1080p, 720p, 480p, 360p ou Audio MP3. Vous choisissez.</p>
       </div>
+      <div class="reveal group p-6 rounded-2xl glass hover:bg-white/[0.04] transition-all hover:-translate-y-1" style="transition-delay:0.15s">
+        <div class="w-12 h-12 rounded-xl bg-brand-500/10 flex items-center justify-center mb-4 group-hover:bg-brand-500/20 transition-colors">
+          <i class="fas fa-palette text-brand-400 text-lg"></i>
+        </div>
+        <h3 class="font-bold text-white mb-2" data-fr="Thème clair & sombre" data-en="Light & dark theme">Thème clair & sombre</h3>
+        <p class="text-sm text-gray-400 leading-relaxed" data-fr="Glassmorphism premium. Switch instantané entre deux thèmes." data-en="Premium glassmorphism. Instant switch between two themes.">Glassmorphism premium. Switch instantané entre deux thèmes.</p>
+      </div>
+      <div class="reveal group p-6 rounded-2xl glass hover:bg-white/[0.04] transition-all hover:-translate-y-1" style="transition-delay:0.2s">
+        <div class="w-12 h-12 rounded-xl bg-brand-500/10 flex items-center justify-center mb-4 group-hover:bg-brand-500/20 transition-colors">
+          <i class="fas fa-language text-brand-400 text-lg"></i>
+        </div>
+        <h3 class="font-bold text-white mb-2" data-fr="Bilingue FR/EN" data-en="Bilingual FR/EN">Bilingue FR/EN</h3>
+        <p class="text-sm text-gray-400 leading-relaxed" data-fr="Interface en français et en anglais. Changement en un clic." data-en="Interface in French and English. Switch with one click.">Interface en français et en anglais. Changement en un clic.</p>
+      </div>
+      <div class="reveal group p-6 rounded-2xl glass hover:bg-white/[0.04] transition-all hover:-translate-y-1" style="transition-delay:0.25s">
+        <div class="w-12 h-12 rounded-xl bg-brand-500/10 flex items-center justify-center mb-4 group-hover:bg-brand-500/20 transition-colors">
+          <i class="fas fa-box-open text-brand-400 text-lg"></i>
+        </div>
+        <h3 class="font-bold text-white mb-2" data-fr="Tout-en-un" data-en="All-in-one">Tout-en-un</h3>
+        <p class="text-sm text-gray-400 leading-relaxed" data-fr="yt-dlp intégré. Aucune installation externe requise." data-en="yt-dlp bundled. No external installation needed.">yt-dlp intégré. Aucune installation externe requise.</p>
+      </div>
+    </div>
+    <div class="text-center mt-10">
+      <a href="#" onclick="navigate('features')" class="inline-flex items-center gap-2 text-brand-400 hover:text-brand-300 text-sm font-semibold transition-colors">
+        <span data-fr="Voir toutes les fonctionnalités" data-en="See all features">Voir toutes les fonctionnalités</span> <i class="fas fa-arrow-right text-xs"></i>
+      </a>
     </div>
   </div>
 </section>
 
-<!-- TECH STACK -->
-<section class="tech">
-  <div class="section-inner">
-    <h2 class="section-title" data-fr="Technologies utilisées" data-en="Tech stack">Technologies utilisées</h2>
-    <div class="tech-grid">
-      <div class="tech-item">
-        <div class="tech-name">Tauri 2</div>
-        <div class="tech-desc" data-fr="Framework de bureau Rust" data-en="Rust desktop framework">Framework de bureau Rust</div>
-      </div>
-      <div class="tech-item">
-        <div class="tech-name">Rust</div>
-        <div class="tech-desc" data-fr="Backend performant et sûr" data-en="Fast and safe backend">Backend performant et sûr</div>
-      </div>
-      <div class="tech-item">
-        <div class="tech-name">yt-dlp</div>
-        <div class="tech-desc" data-fr="Extraction YouTube" data-en="YouTube extraction">Extraction YouTube</div>
-      </div>
-      <div class="tech-item">
-        <div class="tech-name">HTML/CSS/JS</div>
-        <div class="tech-desc" data-fr="Frontend vanilla" data-en="Vanilla frontend">Frontend vanilla</div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- TESTIMONIALS -->
-<section class="testimonials">
-  <div class="section-inner">
-    <h2 class="section-title" data-fr="Ce qu'en disent les utilisateurs" data-en="What users say">Ce qu'en disent les utilisateurs</h2>
-    <p class="section-sub" data-fr="Ajoutez vos témoignages en ouvrant une issue sur GitHub" data-en="Add your testimonial by opening a GitHub issue">Ajoutez vos témoignages en ouvrant une issue sur GitHub</p>
-    <div class="testimonials-grid">
-      <div class="testimonial-card">
-        <div class="testimonial-text" data-fr="&laquo;&nbsp;Application super propre, le mode sombre est magnifique. Je l'utilise tous les jours.&nbsp;&raquo;" data-en="&laquo;&nbsp;Super clean app, the dark mode is beautiful. I use it every day.&nbsp;&raquo;">&laquo;&nbsp;Application super propre, le mode sombre est magnifique. Je l'utilise tous les jours.&nbsp;&raquo;</div>
-        <div class="testimonial-author">— Utilisateur Bêta</div>
-      </div>
-      <div class="testimonial-card">
-        <div class="testimonial-text" data-fr="&laquo;&nbsp;Enfin un télécharger YouTube rapide et sans pub. Le design est vraiment premium.&nbsp;&raquo;" data-en="&laquo;&nbsp;Finally a fast ad-free YouTube downloader. The design is really premium.&nbsp;&raquo;">&laquo;&nbsp;Enfin un télécharger YouTube rapide et sans pub. Le design est vraiment premium.&nbsp;&raquo;</div>
-        <div class="testimonial-author">— Utilisateur Bêta</div>
-      </div>
-      <div class="testimonial-card">
-        <div class="testimonial-text" data-fr="&laquo;&nbsp;La file d'attente avec les téléchargements simultanés c'est génial. Très pratique pour les playlists.&nbsp;&raquo;" data-en="&laquo;&nbsp;The queue with simultaneous downloads is great. Very practical for playlists.&nbsp;&raquo;">&laquo;&nbsp;La file d'attente avec les téléchargements simultanés c'est génial. Très pratique pour les playlists.&nbsp;&raquo;</div>
-        <div class="testimonial-author">— Utilisateur Bêta</div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- FAQ -->
-<section id="faq" class="faq">
-  <div class="section-inner">
-    <h2 class="section-title" data-fr="Questions fréquentes" data-en="FAQ">Questions fréquentes</h2>
-    <div class="faq-list">
-      <details class="faq-item">
-        <summary data-fr="L'application est-elle gratuite ?" data-en="Is the app free?">L'application est-elle gratuite ?</summary>
-        <p data-fr="Oui, l'application est 100% gratuite et open source sous licence MIT. Vous pouvez l'utiliser, la modifier et la redistribuer librement." data-en="Yes, the app is 100% free and open source under MIT license. You can use, modify and redistribute it freely.">Oui, l'application est 100% gratuite et open source sous licence MIT. Vous pouvez l'utiliser, la modifier et la redistribuer librement.</p>
-      </details>
-      <details class="faq-item">
-        <summary data-fr="Quelles sont les prérequis ?" data-en="What are the prerequisites?">Quelles sont les prérequis ?</summary>
-        <p data-fr="Aucun ! yt-dlp est intégré directement dans l'application. Installez-la et c'est parti." data-en="None! yt-dlp is bundled directly in the app. Install it and you're good to go.">Aucun ! yt-dlp est intégré directement dans l'application. Installez-la et c'est parti.</p>
-      </details>
-      <details class="faq-item">
-        <summary data-fr="Supporte-t-elle les playlists ?" data-en="Does it support playlists?">Supporte-t-elle les playlists ?</summary>
-        <p data-fr="Oui, vous pouvez coller une URL de playlist YouTube et l'application affichera toutes les vidéos." data-en="Yes, you can paste a YouTube playlist URL and the app will display all videos.">Oui, vous pouvez coller une URL de playlist YouTube et l'application affichera toutes les vidéos.</p>
-      </details>
-      <details class="faq-item">
-        <summary data-fr="Les téléchargements sont-ils illimités ?" data-en="Are downloads unlimited?">Les téléchargements sont-ils illimités ?</summary>
-        <p data-fr="Oui, il n'y a aucune limite. Vous pouvez télécharger autant de vidéos que vous le souhaitez." data-en="Yes, there are no limits. You can download as many videos as you want.">Oui, il n'y a aucune limite. Vous pouvez télécharger autant de vidéos que vous le souhaitez.</p>
-      </details>
-      <details class="faq-item">
-        <summary data-fr="Fonctionne-t-il sur macOS Apple Silicon ?" data-en="Does it work on Apple Silicon?">Fonctionne-t-il sur macOS Apple Silicon ?</summary>
-        <p data-fr="Oui, une version native Apple Silicon (M1/M2/M3) est disponible. Une version Intel est aussi incluse." data-en="Yes, a native Apple Silicon (M1/M2/M3) build is available. An Intel build is also included.">Oui, une version native Apple Silicon (M1/M2/M3) est disponible. Une version Intel est aussi incluse.</p>
-      </details>
-    </div>
-  </div>
-</section>
-
-<!-- DOWNLOAD -->
-<section class="download" id="download">
-  <div class="section-inner">
-    <h2 data-fr="Télécharger" data-en="Download">Télécharger</h2>
-    <p class="section-sub" data-fr="Choisissez votre plateforme et votre format" data-en="Choose your platform and format">Choisissez votre plateforme et votre format</p>
-
-    <!-- Windows -->
-    <div class="dl-platform">
-      <div class="dl-platform-header">
-        <i class="fab fa-windows dl-platform-icon"></i>
-        <div>
-          <h3>Windows</h3>
-          <span class="dl-platform-sub" data-fr="Installateur" data-en="Installer">Installateur</span>
+<!-- Screenshot -->
+<section class="py-24 border-t border-white/5">
+  <div class="max-w-5xl mx-auto px-4">
+    <h2 class="text-3xl sm:text-4xl font-black text-center gradient-text mb-16 reveal" data-fr="Un aperçu" data-en="A preview">Un aperçu</h2>
+    <div class="screenshot-frame reveal animate-glow">
+      <div class="screenshot-inner">
+        <img src="assets/screenshot.png" alt="YT Downloader Screenshot" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+        <div class="screenshot-placeholder flex flex-col items-center justify-center" style="display:none">
+          <i class="fas fa-image text-4xl mb-3 opacity-30"></i>
+          <span data-fr="Capture d'écran à venir" data-en="Screenshot coming soon">Capture d'écran à venir</span>
         </div>
       </div>
-      <div class="dl-files" id="dl-windows">
-        <div class="dl-loading" data-fr="Chargement des liens..." data-en="Loading links...">Chargement des liens...</div>
+    </div>
+  </div>
+</section>
+
+<!-- Testimonials -->
+<section class="py-24 border-t border-white/5">
+  <div class="max-w-5xl mx-auto px-4">
+    <h2 class="text-3xl sm:text-4xl font-black text-center gradient-text mb-4 reveal" data-fr="Ce qu'en disent les utilisateurs" data-en="What users say">Ce qu'en disent les utilisateurs</h2>
+    <p class="text-center text-gray-500 mb-12 reveal" data-fr="Ajoutez le vôtre sur GitHub" data-en="Add yours on GitHub">Ajoutez le vôtre sur GitHub</p>
+    <div class="grid md:grid-cols-3 gap-5">
+      <div class="reveal p-6 rounded-2xl glass" style="transition-delay:0s">
+        <div class="flex gap-1 mb-4"><i class="fas fa-star text-yellow-400 text-xs"></i><i class="fas fa-star text-yellow-400 text-xs"></i><i class="fas fa-star text-yellow-400 text-xs"></i><i class="fas fa-star text-yellow-400 text-xs"></i><i class="fas fa-star text-yellow-400 text-xs"></i></div>
+        <p class="text-sm text-gray-300 italic leading-relaxed mb-4" data-fr="« Application super propre, le mode sombre est magnifique. Je l'utilise tous les jours. »" data-en="« Super clean app, the dark mode is beautiful. I use it every day. »">« Application super propre, le mode sombre est magnifique. Je l'utilise tous les jours. »</p>
+        <div class="text-xs text-brand-400 font-semibold">— Utilisateur Bêta</div>
+      </div>
+      <div class="reveal p-6 rounded-2xl glass" style="transition-delay:0.05s">
+        <div class="flex gap-1 mb-4"><i class="fas fa-star text-yellow-400 text-xs"></i><i class="fas fa-star text-yellow-400 text-xs"></i><i class="fas fa-star text-yellow-400 text-xs"></i><i class="fas fa-star text-yellow-400 text-xs"></i><i class="fas fa-star text-yellow-400 text-xs"></i></div>
+        <p class="text-sm text-gray-300 italic leading-relaxed mb-4" data-fr="« Enfin un télécharger YouTube rapide et sans pub. Le design est vraiment premium. »" data-en="« Finally a fast ad-free YouTube downloader. The design is really premium. »">« Enfin un télécharger YouTube rapide et sans pub. Le design est vraiment premium. »</p>
+        <div class="text-xs text-brand-400 font-semibold">— Utilisateur Bêta</div>
+      </div>
+      <div class="reveal p-6 rounded-2xl glass" style="transition-delay:0.1s">
+        <div class="flex gap-1 mb-4"><i class="fas fa-star text-yellow-400 text-xs"></i><i class="fas fa-star text-yellow-400 text-xs"></i><i class="fas fa-star text-yellow-400 text-xs"></i><i class="fas fa-star text-yellow-400 text-xs"></i><i class="fas fa-star text-yellow-400 text-xs"></i></div>
+        <p class="text-sm text-gray-300 italic leading-relaxed mb-4" data-fr="« La file d'attente avec les téléchargements simultanés c'est génial. Très pratique pour les playlists. »" data-en="« The queue with simultaneous downloads is great. Very practical for playlists. »">« La file d'attente avec les téléchargements simultanés c'est génial. Très pratique pour les playlists. »</p>
+        <div class="text-xs text-brand-400 font-semibold">— Utilisateur Bêta</div>
       </div>
     </div>
-
-    <!-- Linux -->
-    <div class="dl-platform">
-      <div class="dl-platform-header">
-        <i class="fab fa-linux dl-platform-icon"></i>
-        <div>
-          <h3>Linux</h3>
-          <span class="dl-platform-sub" data-fr="Paquets natifs" data-en="Native packages">Paquets natifs</span>
-        </div>
-      </div>
-      <div class="dl-files" id="dl-linux">
-        <div class="dl-loading" data-fr="Chargement des liens..." data-en="Loading links...">Chargement des liens...</div>
-      </div>
-    </div>
-
-    <!-- macOS -->
-    <div class="dl-platform">
-      <div class="dl-platform-header">
-        <i class="fab fa-apple dl-platform-icon"></i>
-        <div>
-          <h3>macOS</h3>
-          <span class="dl-platform-sub" data-fr="Application" data-en="Application">Application</span>
-        </div>
-      </div>
-      <div class="dl-files" id="dl-macos">
-        <div class="dl-loading" data-fr="Chargement des liens..." data-en="Loading links...">Chargement des liens...</div>
-      </div>
-    </div>
-
-    <p class="download-note" data-fr="Ou clonez le repo et buildez-le vous-même — voir le README" data-en="Or clone the repo and build it yourself — see the README">Ou clonez le repo et buildez-le vous-même — voir le <a href="https://github.com/akaletekoffilevis/youtube-downloader" target="_blank">README</a></p>
   </div>
 </section>
 
 <!-- CTA -->
-<section class="cta">
-  <div class="section-inner">
-    <h2 data-fr="Open Source" data-en="Open Source">Open Source</h2>
-    <p data-fr="Gratuit, libre et transparent. Contributions bienvenues." data-en="Free, open and transparent. Contributions welcome.">Gratuit, libre et transparent. Contributions bienvenues.</p>
-    <a href="https://github.com/akaletekoffilevis/youtube-downloader" class="btn btn-primary btn-lg" target="_blank">
-      <i class="fab fa-github"></i>
-      <span>GitHub</span>
-    </a>
+<section class="py-24 border-t border-white/5">
+  <div class="max-w-3xl mx-auto px-4 text-center">
+    <div class="p-12 rounded-3xl glass gradient-border">
+      <h2 class="text-3xl sm:text-4xl font-black gradient-text mb-4 reveal" data-fr="Prêt à télécharger ?" data-en="Ready to download?">Prêt à télécharger ?</h2>
+      <p class="text-gray-400 mb-8 reveal" style="transition-delay:0.1s" data-fr="100% gratuit, open source, sans pub." data-en="100% free, open source, no ads.">100% gratuit, open source, sans pub.</p>
+      <a href="#" onclick="navigate('download')" class="inline-flex items-center gap-2 px-8 py-4 bg-brand-500 hover:bg-brand-600 text-white font-bold rounded-xl transition-all hover:shadow-[0_0_30px_rgba(99,102,241,0.3)] hover:-translate-y-0.5 reveal" style="transition-delay:0.2s">
+        <i class="fas fa-download"></i> <span data-fr="Télécharger maintenant" data-en="Download now">Télécharger maintenant</span>
+      </a>
+    </div>
   </div>
 </section>
 
-<!-- FOOTER -->
-<footer class="footer">
-  <div class="footer-inner">
-    <div class="footer-left">
-      <img src="assets/logo.svg" alt="Logo" width="24" height="24">
-      <span>YT Downloader</span>
+</div><!-- /home -->
+
+<!-- ========== PAGE: FEATURES ========== -->
+<div data-page="features">
+
+<section class="pt-32 pb-24">
+  <div class="max-w-6xl mx-auto px-4">
+    <div class="text-center mb-20">
+      <h1 class="text-4xl sm:text-5xl font-black gradient-text mb-4" data-fr="Fonctionnalités" data-en="Features">Fonctionnalités</h1>
+      <p class="text-gray-400 text-lg max-w-xl mx-auto" data-fr="Tout ce dont vous avez besoin, et rien de plus." data-en="Everything you need, nothing more.">Tout ce dont vous avez besoin, et rien de plus.</p>
     </div>
-    <div class="footer-center">
-      <span>&copy; 2026 Koffi Levis Akalete. MIT License.</span>
+
+    <!-- Feature 1: Search -->
+    <div class="grid lg:grid-cols-2 gap-12 items-center mb-24">
+      <div class="reveal">
+        <div class="w-14 h-14 rounded-2xl bg-brand-500/10 flex items-center justify-center mb-6"><i class="fas fa-search text-brand-400 text-xl"></i></div>
+        <h3 class="text-2xl font-bold text-white mb-3" data-fr="Recherche intégrée" data-en="Built-in search">Recherche intégrée</h3>
+        <p class="text-gray-400 leading-relaxed mb-4" data-fr="Cherchez directement dans l'application sans ouvrir votre navigateur. Jusqu'à 100 résultats par recherche via l'API YouTube. Idéal pour trouver rapidement la bonne vidéo." data-en="Search directly in the app without opening your browser. Up to 100 results per search via the YouTube API. Perfect for finding the right video quickly.">Cherchez directement dans l'application sans ouvrir votre navigateur. Jusqu'à 100 résultats par recherche via l'API YouTube. Idéal pour trouver rapidement la bonne vidéo.</p>
+        <ul class="space-y-2">
+          <li class="flex items-center gap-2 text-sm text-gray-400"><i class="fas fa-check text-brand-400 text-xs"></i> <span data-fr="100 résultats par recherche" data-en="100 results per search">100 résultats par recherche</span></li>
+          <li class="flex items-center gap-2 text-sm text-gray-400"><i class="fas fa-check text-brand-400 text-xs"></i> <span data-fr="Vidéos, playlists, chaînes" data-en="Videos, playlists, channels">Vidéos, playlists, chaînes</span></li>
+          <li class="flex items-center gap-2 text-sm text-gray-400"><i class="fas fa-check text-brand-400 text-xs"></i> <span data-fr="Aperçu avec miniatures" data-en="Preview with thumbnails">Aperçu avec miniatures</span></li>
+        </ul>
+      </div>
+      <div class="screenshot-frame reveal" style="transition-delay:0.1s">
+        <div class="screenshot-inner">
+          <img src="assets/screenshot-search.png" alt="Search" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+          <div class="screenshot-placeholder flex flex-col items-center justify-center" style="display:none"><i class="fas fa-search text-3xl mb-2 opacity-30"></i><span data-fr="Capture à venir" data-en="Screenshot coming soon">Capture à venir</span></div>
+        </div>
+      </div>
     </div>
-    <div class="footer-right">
-      <a href="#features" data-fr="Fonctionnalités" data-en="Features">Fonctionnalités</a>
-      <a href="#download" data-fr="Télécharger" data-en="Download">Télécharger</a>
-      <a href="#faq" data-fr="FAQ" data-en="FAQ">FAQ</a>
-      <a href="https://github.com/akaletekoffilevis/youtube-downloader" target="_blank"><i class="fab fa-github"></i> GitHub</a>
-      <a href="mailto:koffilevis21@gmail.com"><i class="fas fa-envelope"></i> Contact</a>
+
+    <!-- Feature 2: Queue -->
+    <div class="grid lg:grid-cols-2 gap-12 items-center mb-24">
+      <div class="screenshot-frame reveal order-2 lg:order-1">
+        <div class="screenshot-inner">
+          <img src="assets/screenshot-queue.png" alt="Queue" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+          <div class="screenshot-placeholder flex flex-col items-center justify-center" style="display:none"><i class="fas fa-layer-group text-3xl mb-2 opacity-30"></i><span data-fr="Capture à venir" data-en="Screenshot coming soon">Capture à venir</span></div>
+        </div>
+      </div>
+      <div class="reveal order-1 lg:order-2" style="transition-delay:0.1s">
+        <div class="w-14 h-14 rounded-2xl bg-brand-500/10 flex items-center justify-center mb-6"><i class="fas fa-layer-group text-brand-400 text-xl"></i></div>
+        <h3 class="text-2xl font-bold text-white mb-3" data-fr="File d'attente intelligente" data-en="Smart queue">File d'attente intelligente</h3>
+        <p class="text-gray-400 leading-relaxed mb-4" data-fr="Gérez plusieurs téléchargements en même temps. La barre de progression vous montre exactement où en est chaque téléchargement." data-en="Manage multiple downloads simultaneously. The progress bar shows you exactly where each download stands.">Gérez plusieurs téléchargements en même temps. La barre de progression vous montre exactement où en est chaque téléchargement.</p>
+        <ul class="space-y-2">
+          <li class="flex items-center gap-2 text-sm text-gray-400"><i class="fas fa-check text-brand-400 text-xs"></i> <span data-fr="1 à 5 simultanés" data-en="1 to 5 simultaneous">1 à 5 simultanés</span></li>
+          <li class="flex items-center gap-2 text-sm text-gray-400"><i class="fas fa-check text-brand-400 text-xs"></i> <span data-fr="Pause, reprise, annulation" data-en="Pause, resume, cancel">Pause, reprise, annulation</span></li>
+          <li class="flex items-center gap-2 text-sm text-gray-400"><i class="fas fa-check text-brand-400 text-xs"></i> <span data-fr="Barre de progression temps réel" data-en="Real-time progress bar">Barre de progression temps réel</span></li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Feature 3: Quality -->
+    <div class="grid lg:grid-cols-2 gap-12 items-center mb-24">
+      <div class="reveal">
+        <div class="w-14 h-14 rounded-2xl bg-brand-500/10 flex items-center justify-center mb-6"><i class="fas fa-sliders text-brand-400 text-xl"></i></div>
+        <h3 class="text-2xl font-bold text-white mb-3" data-fr="Choix de qualité" data-en="Quality picker">Choix de qualité</h3>
+        <p class="text-gray-400 leading-relaxed mb-4" data-fr="Vous choisissez la qualité avant de télécharger. De la meilleure qualité possible à l'audio pur, c'est vous qui décidez." data-en="Choose the quality before downloading. From the best possible quality to pure audio, you decide.">Vous choisissez la qualité avant de télécharger. De la meilleure qualité possible à l'audio pur, c'est vous qui décidez.</p>
+        <ul class="space-y-2">
+          <li class="flex items-center gap-2 text-sm text-gray-400"><i class="fas fa-check text-brand-400 text-xs"></i> <span data-fr="1080p Full HD" data-en="1080p Full HD">1080p Full HD</span></li>
+          <li class="flex items-center gap-2 text-sm text-gray-400"><i class="fas fa-check text-brand-400 text-xs"></i> 720p / 480p / 360p</li>
+          <li class="flex items-center gap-2 text-sm text-gray-400"><i class="fas fa-check text-brand-400 text-xs"></i> <span data-fr="Audio MP3 haute qualité" data-en="High quality MP3 audio">Audio MP3 haute qualité</span></li>
+        </ul>
+      </div>
+      <div class="screenshot-frame reveal" style="transition-delay:0.1s">
+        <div class="screenshot-inner">
+          <img src="assets/screenshot-quality.png" alt="Quality" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+          <div class="screenshot-placeholder flex flex-col items-center justify-center" style="display:none"><i class="fas fa-sliders text-3xl mb-2 opacity-30"></i><span data-fr="Capture à venir" data-en="Screenshot coming soon">Capture à venir</span></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Feature 4: Theme -->
+    <div class="grid lg:grid-cols-2 gap-12 items-center">
+      <div class="screenshot-frame reveal order-2 lg:order-1">
+        <div class="screenshot-inner">
+          <img src="assets/screenshot-theme.png" alt="Theme" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+          <div class="screenshot-placeholder flex flex-col items-center justify-center" style="display:none"><i class="fas fa-palette text-3xl mb-2 opacity-30"></i><span data-fr="Capture à venir" data-en="Screenshot coming soon">Capture à venir</span></div>
+        </div>
+      </div>
+      <div class="reveal order-1 lg:order-2" style="transition-delay:0.1s">
+        <div class="w-14 h-14 rounded-2xl bg-brand-500/10 flex items-center justify-center mb-6"><i class="fas fa-palette text-brand-400 text-xl"></i></div>
+        <h3 class="text-2xl font-bold text-white mb-3" data-fr="Thème clair & sombre" data-en="Light & dark theme">Thème clair & sombre</h3>
+        <p class="text-gray-400 leading-relaxed mb-4" data-fr="Design glassmorphism premium avec deux thèmes. Passage instantané d'un thème à l'autre depuis le menu." data-en="Premium glassmorphism design with two themes. Instant switch from one theme to another from the menu.">Design glassmorphism premium avec deux thèmes. Passage instantané d'un thème à l'autre depuis le menu.</p>
+        <ul class="space-y-2">
+          <li class="flex items-center gap-2 text-sm text-gray-400"><i class="fas fa-check text-brand-400 text-xs"></i> <span data-fr="Glassmorphism premium" data-en="Premium glassmorphism">Glassmorphism premium</span></li>
+          <li class="flex items-center gap-2 text-sm text-gray-400"><i class="fas fa-check text-brand-400 text-xs"></i> <span data-fr="Switch instantané" data-en="Instant switch">Switch instantané</span></li>
+          <li class="flex items-center gap-2 text-sm text-gray-400"><i class="fas fa-check text-brand-400 text-xs"></i> <span data-fr="Préférence sauvegardée" data-en="Preference saved">Préférence sauvegardée</span></li>
+        </ul>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+</div><!-- /features -->
+
+<!-- ========== PAGE: DOWNLOAD ========== -->
+<div data-page="download">
+
+<section class="pt-32 pb-24">
+  <div class="max-w-4xl mx-auto px-4">
+    <div class="text-center mb-16">
+      <h1 class="text-4xl sm:text-5xl font-black gradient-text mb-4" data-fr="Télécharger" data-en="Download">Télécharger</h1>
+      <p class="text-gray-400 text-lg" data-fr="Choisissez votre plateforme. Tout est inclus — yt-dlp intégré." data-en="Choose your platform. Everything is included — yt-dlp bundled.">Choisissez votre plateforme. Tout est inclus — yt-dlp intégré.</p>
+    </div>
+
+    <!-- Windows -->
+    <div class="mb-6 reveal">
+      <div class="rounded-2xl glass overflow-hidden">
+        <div class="flex items-center gap-4 px-6 py-4 border-b border-white/5">
+          <i class="fab fa-windows text-2xl text-brand-400"></i>
+          <div><h3 class="font-bold text-white">Windows</h3><p class="text-xs text-gray-500">Windows 10/11 x64</p></div>
+        </div>
+        <div class="p-2" id="dl-windows">
+          <div class="px-4 py-3 text-sm text-gray-500 text-center" data-fr="Chargement..." data-en="Loading...">Chargement...</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Linux -->
+    <div class="mb-6 reveal" style="transition-delay:0.05s">
+      <div class="rounded-2xl glass overflow-hidden">
+        <div class="flex items-center gap-4 px-6 py-4 border-b border-white/5">
+          <i class="fab fa-linux text-2xl text-brand-400"></i>
+          <div><h3 class="font-bold text-white">Linux</h3><p class="text-xs text-gray-500">Debian, Fedora, AppImage</p></div>
+        </div>
+        <div class="p-2" id="dl-linux">
+          <div class="px-4 py-3 text-sm text-gray-500 text-center" data-fr="Chargement..." data-en="Loading...">Chargement...</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- macOS -->
+    <div class="mb-8 reveal" style="transition-delay:0.1s">
+      <div class="rounded-2xl glass overflow-hidden">
+        <div class="flex items-center gap-4 px-6 py-4 border-b border-white/5">
+          <i class="fab fa-apple text-2xl text-brand-400"></i>
+          <div><h3 class="font-bold text-white">macOS</h3><p class="text-xs text-gray-500">Apple Silicon + Intel</p></div>
+        </div>
+        <div class="p-2" id="dl-macos">
+          <div class="px-4 py-3 text-sm text-gray-500 text-center" data-fr="Chargement..." data-en="Loading...">Chargement...</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="text-center">
+      <p class="text-sm text-gray-500" data-fr="Ou clonez le repo et buildez-le vous-même" data-en="Or clone the repo and build it yourself">
+        <span data-fr="Ou clonez le repo et buildez-le vous-même" data-en="Or clone the repo and build it yourself">Ou clonez le repo et buildez-le vous-même</span> —
+        <a href="https://github.com/akaletekoffilevis/youtube-downloader" target="_blank" class="text-brand-400 hover:text-brand-300">README</a>
+      </p>
+    </div>
+  </div>
+</section>
+
+</div><!-- /download -->
+
+<!-- ========== PAGE: ABOUT ========== -->
+<div data-page="about">
+
+<section class="pt-32 pb-24">
+  <div class="max-w-4xl mx-auto px-4">
+    <div class="text-center mb-16">
+      <h1 class="text-4xl sm:text-5xl font-black gradient-text mb-4" data-fr="À propos" data-en="About">À propos</h1>
+      <p class="text-gray-400 text-lg max-w-xl mx-auto" data-fr="Un projet open source construit avec passion." data-en="An open source project built with passion.">Un projet open source construit avec passion.</p>
+    </div>
+
+    <!-- Tech Stack -->
+    <div class="mb-16">
+      <h2 class="text-xl font-bold text-white mb-6 text-center" data-fr="Technologies" data-en="Technologies">Technologies</h2>
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+        <div class="reveal p-5 rounded-2xl glass text-center hover:bg-white/[0.04] transition-all">
+          <div class="text-brand-400 font-bold mb-1">Tauri 2</div>
+          <div class="text-xs text-gray-500" data-fr="Framework bureau" data-en="Desktop framework">Framework bureau</div>
+        </div>
+        <div class="reveal p-5 rounded-2xl glass text-center hover:bg-white/[0.04] transition-all" style="transition-delay:0.05s">
+          <div class="text-brand-400 font-bold mb-1">Rust</div>
+          <div class="text-xs text-gray-500" data-fr="Backend" data-en="Backend">Backend</div>
+        </div>
+        <div class="reveal p-5 rounded-2xl glass text-center hover:bg-white/[0.04] transition-all" style="transition-delay:0.1s">
+          <div class="text-brand-400 font-bold mb-1">yt-dlp</div>
+          <div class="text-xs text-gray-500" data-fr="Moteur YouTube" data-en="YouTube engine">Moteur YouTube</div>
+        </div>
+        <div class="reveal p-5 rounded-2xl glass text-center hover:bg-white/[0.04] transition-all" style="transition-delay:0.15s">
+          <div class="text-brand-400 font-bold mb-1">Tailwind CSS</div>
+          <div class="text-xs text-gray-500" data-fr="Landing page" data-en="Landing page">Landing page</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Author -->
+    <div class="mb-16">
+      <div class="max-w-lg mx-auto p-8 rounded-2xl glass text-center reveal">
+        <div class="w-20 h-20 rounded-full bg-brand-500/20 flex items-center justify-center mx-auto mb-4">
+          <i class="fas fa-user text-brand-400 text-2xl"></i>
+        </div>
+        <h3 class="text-xl font-bold text-white mb-1">Koffi Levis Akalete</h3>
+        <p class="text-sm text-gray-400 mb-4" data-fr="Développeur & Créateur" data-en="Developer & Creator">Développeur & Créateur</p>
+        <div class="flex items-center justify-center gap-4">
+          <a href="https://github.com/akaletekoffilevis" target="_blank" class="text-gray-400 hover:text-white transition-colors"><i class="fab fa-github text-lg"></i></a>
+          <a href="mailto:koffilevis21@gmail.com" class="text-gray-400 hover:text-white transition-colors"><i class="fas fa-envelope text-lg"></i></a>
+        </div>
+      </div>
+    </div>
+
+    <!-- License -->
+    <div class="max-w-lg mx-auto p-6 rounded-2xl glass text-center reveal">
+      <div class="w-12 h-12 rounded-xl bg-green-500/10 flex items-center justify-center mx-auto mb-4">
+        <i class="fas fa-scale-balanced text-green-400 text-lg"></i>
+      </div>
+      <h3 class="font-bold text-white mb-2">MIT License</h3>
+      <p class="text-sm text-gray-400" data-fr="Gratuit, libre, sans restriction. Utilisez, modifiez et redistribuez comme vous le souhaitez." data-en="Free, open, no restrictions. Use, modify and redistribute as you wish.">Gratuit, libre, sans restriction. Utilisez, modifiez et redistribuez comme vous le souhaitez.</p>
+    </div>
+  </div>
+</section>
+
+</div><!-- /about -->
+
+<!-- ========== FOOTER ========== -->
+<footer class="border-t border-white/5 py-8">
+  <div class="max-w-6xl mx-auto px-4">
+    <div class="flex flex-col md:flex-row items-center justify-between gap-4">
+      <div class="flex items-center gap-3">
+        <img src="assets/logo.svg" alt="Logo" class="w-6 h-6 rounded">
+        <span class="text-sm font-semibold text-gray-300">YT Downloader</span>
+      </div>
+      <div class="text-xs text-gray-600">&copy; 2026 Koffi Levis Akalete. MIT License.</div>
+      <div class="flex items-center gap-4 text-xs">
+        <a href="https://github.com/akaletekoffilevis/youtube-downloader" target="_blank" class="text-gray-500 hover:text-white transition-colors"><i class="fab fa-github"></i> GitHub</a>
+        <a href="mailto:koffilevis21@gmail.com" class="text-gray-500 hover:text-white transition-colors"><i class="fas fa-envelope"></i> Contact</a>
+      </div>
     </div>
   </div>
 </footer>
