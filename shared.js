@@ -84,7 +84,7 @@ function renderNav() {
     `<a href="${l.href}" class="px-3 py-2 text-sm font-medium rounded-lg transition-colors ${l.id===page?'text-indigo-400 dark:text-indigo-400 text-indigo-600':'text-gray-500 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white'}" data-fr="${l.fr}" data-en="${l.en}">${l.fr}</a>`
   ).join('');
   const mobileLinks = links.map(l =>
-    `<a href="${l.href}" class="block px-4 py-3 rounded-xl text-base font-medium transition-colors ${l.id===page?'bg-indigo-50 dark:bg-indigo-500/10 text-indigo-600 dark:text-indigo-400':'text-gray-600 dark:text-gray-400 hover:bg-gray-50 dark:hover:bg-white/5 active:bg-gray-100 dark:active:bg-white/10'}" data-fr="${l.fr}" data-en="${l.en}">${l.fr}</a>`
+    `<a href="${l.href}" onclick="if(mobileMenuOpen)toggleMobileMenu()" class="block px-4 py-3 rounded-xl text-base font-medium transition-colors ${l.id===page?'bg-indigo-50 dark:bg-indigo-500/10 text-indigo-600 dark:text-indigo-400':'text-gray-600 dark:text-gray-400 hover:bg-gray-50 dark:hover:bg-white/5 active:bg-gray-100 dark:active:bg-white/10'}" data-fr="${l.fr}" data-en="${l.en}">${l.fr}</a>`
   ).join('');
 
   const nav = document.getElementById('site-nav');
@@ -98,13 +98,13 @@ function renderNav() {
             <span class="font-bold text-lg text-gray-900 dark:text-white hidden sm:inline">YT Downloader</span>
           </a>
           <div class="hidden md:flex items-center gap-1">${navLinks}</div>
-          <div class="flex items-center gap-2 shrink-0">
-            <button onclick="toggleLang()" class="px-2.5 py-1.5 text-xs font-semibold rounded-lg bg-gray-100 dark:bg-white/5 border border-gray-200 dark:border-white/10 text-gray-500 dark:text-gray-400 hover:bg-indigo-500 hover:text-white hover:border-indigo-500 transition-all" id="lang-btn">EN</button>
-            <button onclick="toggleTheme()" class="p-2 rounded-lg bg-gray-100 dark:bg-white/5 border border-gray-200 dark:border-white/10 text-gray-500 dark:text-gray-400 hover:bg-indigo-50 dark:hover:bg-indigo-500/10 transition-all hidden sm:flex">
+          <div class="flex items-center gap-1.5 sm:gap-2 shrink-0">
+            <button onclick="toggleLang()" class="px-2 sm:px-2.5 py-1.5 text-xs font-semibold rounded-lg bg-gray-100 dark:bg-white/5 border border-gray-200 dark:border-white/10 text-gray-500 dark:text-gray-400 hover:bg-indigo-500 hover:text-white hover:border-indigo-500 transition-all" id="lang-btn">EN</button>
+            <button onclick="toggleTheme()" class="p-2 rounded-lg bg-gray-100 dark:bg-white/5 border border-gray-200 dark:border-white/10 text-gray-500 dark:text-gray-400 hover:bg-indigo-50 dark:hover:bg-indigo-500/10 transition-all">
               <i id="theme-icon" class="fas ${theme==='dark'?'fa-sun':'fa-moon'} text-sm"></i>
             </button>
             <a href="https://github.com/akaletekoffilevis/youtube-downloader" target="_blank" class="hidden sm:flex items-center gap-2 px-3 py-1.5 text-xs font-semibold rounded-lg bg-gray-100 dark:bg-white/5 border border-gray-200 dark:border-white/10 text-gray-500 dark:text-gray-400 hover:bg-gray-200 dark:hover:bg-white/10 transition-all">
-              <i class="fab fa-github"></i> GitHub
+              <i class="fab fa-github"></i>
             </a>
             <button onclick="toggleMobileMenu()" id="hamburger-btn" class="md:hidden p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-white/5 active:bg-gray-200 dark:active:bg-white/10">
               <i id="hamburger-icon" class="fas fa-bars text-gray-500 dark:text-gray-400 text-lg"></i>
@@ -160,9 +160,17 @@ async function loadDownloads() {
   };
   function getExt(n) { if(n.endsWith('.tar.gz'))return '.tar.gz'; const i=n.lastIndexOf('.'); return i!==-1?n.slice(i).toLowerCase():''; }
   function fmtSize(b) { if(!b)return''; if(b<1048576)return(b/1024).toFixed(0)+' KB'; return(b/1048576).toFixed(1)+' MB'; }
-  function renderFile(a) {
+  function renderFile(a, isMain) {
     const ext=getExt(a.name), m=fileMeta[ext]||{icon:'fas fa-file',color:'text-gray-400',label:ext};
-    return `<a href="${a.browser_download_url}" class="flex items-center justify-between px-4 py-3 rounded-xl bg-gray-50 dark:bg-white/[0.02] border border-gray-100 dark:border-white/5 hover:border-indigo-300 dark:hover:border-indigo-500/30 hover:bg-indigo-50/50 dark:hover:bg-indigo-500/5 transition-all group" target="_blank">
+    if (isMain) {
+      return `<a href="${a.browser_download_url}" download class="flex items-center justify-between px-4 py-4 rounded-xl bg-brand-500 hover:bg-brand-600 text-white transition-all group shadow-lg shadow-brand-500/20 hover:shadow-brand-500/30 hover:-translate-y-0.5">
+        <div class="flex items-center gap-3 min-w-0">
+          <div class="w-10 h-10 rounded-xl bg-white/20 flex items-center justify-center flex-shrink-0"><i class="fas fa-download text-white"></i></div>
+          <div class="min-w-0"><div class="text-sm font-bold truncate">${a.name}</div><div class="text-xs text-white/70">${m.label} · ${fmtSize(a.size)}</div></div>
+        </div>
+        <i class="fas fa-arrow-down text-white/80 group-hover:text-white text-sm transition-colors flex-shrink-0 ml-3"></i></a>`;
+    }
+    return `<a href="${a.browser_download_url}" download class="flex items-center justify-between px-4 py-3 rounded-xl bg-gray-50 dark:bg-white/[0.02] border border-gray-100 dark:border-white/5 hover:border-indigo-300 dark:hover:border-indigo-500/30 hover:bg-indigo-50/50 dark:hover:bg-indigo-500/5 transition-all group">
       <div class="flex items-center gap-3 min-w-0">
         <div class="w-10 h-10 rounded-xl bg-gray-100 dark:bg-white/5 flex items-center justify-center flex-shrink-0"><i class="${m.icon} ${m.color}"></i></div>
         <div class="min-w-0"><div class="text-sm font-semibold text-gray-900 dark:text-white truncate">${a.name}</div><div class="text-xs text-gray-400">${m.label} · ${fmtSize(a.size)}</div></div>
@@ -175,7 +183,7 @@ async function loadDownloads() {
     for(const[id,pats]of Object.entries(platformMap)){
       const el=document.getElementById(id); if(!el)continue;
       const matched=assets.filter(a=>pats.some(p=>p.test(a.name)));
-      el.innerHTML=matched.length?matched.map(renderFile).join(''):
+      el.innerHTML=matched.length?matched.map((a,i)=>renderFile(a,i===0)).join(''):
         `<div class="px-4 py-3 text-sm text-gray-400 text-center" data-fr="Bientôt disponible" data-en="Coming soon">Bientôt disponible</div>`;
     }
   } catch {
