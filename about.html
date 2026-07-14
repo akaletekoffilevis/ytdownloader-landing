@@ -2,8 +2,15 @@
 <html lang="fr" class="dark scroll-smooth">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>À propos — YT Downloader</title>
+<meta name="description" content="À propos de YT Downloader — projet open source, MIT License.">
+<meta property="og:title" content="À propos — YT Downloader">
+<meta property="og:description" content="Un projet open source construit avec Tauri 2, Rust et yt-dlp.">
+<meta property="og:image" content="https://yt-downloader-docs.vercel.app/assets/og-image.svg">
+<meta property="og:url" content="https://yt-downloader-docs.vercel.app/about.html">
+<meta property="og:type" content="website">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="À propos — YT Downloader">
+<meta name="twitter:image" content="https://yt-downloader-docs.vercel.app/assets/og-image.svg">
 <link rel="icon" type="image/svg+xml" href="assets/logo.svg">
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
 <script src="https://cdn.tailwindcss.com"></script>
@@ -15,17 +22,17 @@ tailwind.config = { darkMode:'class', theme:{ extend:{ fontFamily:{ sans:['Inter
 <body class="bg-white dark:bg-[#0a0a14] text-gray-900 dark:text-white font-sans antialiased transition-colors">
 <nav id="site-nav"></nav>
 
-<section class="pt-32 pb-24">
+<section class="pt-24 sm:pt-32 pb-16 sm:pb-24">
   <div class="max-w-4xl mx-auto px-4">
-    <div class="text-center mb-16">
-      <h1 class="text-4xl sm:text-5xl font-black text-gray-900 dark:text-white mb-4" data-fr="À propos" data-en="About">À propos</h1>
+    <div class="text-center mb-12 sm:mb-16">
+      <h1 class="text-3xl sm:text-4xl lg:text-5xl font-black text-gray-900 dark:text-white mb-4" data-fr="À propos" data-en="About">À propos</h1>
       <p class="text-gray-500 dark:text-gray-400 text-lg max-w-xl mx-auto" data-fr="Un projet open source construit avec passion." data-en="An open source project built with passion.">Un projet open source construit avec passion.</p>
     </div>
 
     <!-- Tech Stack -->
-    <div class="mb-16">
-      <h2 class="text-xl font-bold text-gray-900 dark:text-white mb-6 text-center" data-fr="Technologies" data-en="Technologies">Technologies</h2>
-      <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+    <div class="mb-12 sm:mb-16">
+      <h2 class="text-lg sm:text-xl font-bold text-gray-900 dark:text-white mb-5 sm:mb-6 text-center" data-fr="Technologies" data-en="Technologies">Technologies</h2>
+      <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 sm:gap-4">
         <div class="p-5 rounded-2xl bg-gray-50 dark:bg-white/[0.02] border border-gray-100 dark:border-white/5 text-center hover:border-brand-300 dark:hover:border-brand-500/30 transition-all">
           <div class="text-brand-500 dark:text-brand-400 font-bold mb-1">Tauri 2</div>
           <div class="text-xs text-gray-400" data-fr="Framework bureau" data-en="Desktop framework">Framework bureau</div>
@@ -46,10 +53,10 @@ tailwind.config = { darkMode:'class', theme:{ extend:{ fontFamily:{ sans:['Inter
     </div>
 
     <!-- Author -->
-    <div class="mb-16">
-      <div class="max-w-lg mx-auto p-8 rounded-2xl bg-gray-50 dark:bg-white/[0.02] border border-gray-100 dark:border-white/5 text-center">
-        <div class="w-20 h-20 rounded-full bg-brand-100 dark:bg-brand-500/20 flex items-center justify-center mx-auto mb-4">
-          <i class="fas fa-user text-brand-500 dark:text-brand-400 text-2xl"></i>
+    <div class="mb-12 sm:mb-16">
+      <div class="max-w-lg mx-auto p-6 sm:p-8 rounded-2xl bg-gray-50 dark:bg-white/[0.02] border border-gray-100 dark:border-white/5 text-center">
+        <div class="w-16 h-16 sm:w-20 sm:h-20 rounded-full bg-brand-100 dark:bg-brand-500/20 flex items-center justify-center mx-auto mb-4">
+          <i class="fas fa-user text-brand-500 dark:text-brand-400 text-xl sm:text-2xl"></i>
         </div>
         <h3 class="text-xl font-bold text-gray-900 dark:text-white mb-1">Koffi Levis Akalete</h3>
         <p class="text-sm text-gray-500 dark:text-gray-400 mb-4" data-fr="Développeur & Créateur" data-en="Developer & Creator">Développeur & Créateur</p>

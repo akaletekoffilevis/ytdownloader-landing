@@ -35,6 +35,33 @@ function toggleLang() {
 }
 
 /* ===== Nav component ===== */
+let mobileMenuOpen = false;
+function toggleMobileMenu() {
+  mobileMenuOpen = !mobileMenuOpen;
+  const menu = document.getElementById('mobile-menu');
+  const icon = document.getElementById('hamburger-icon');
+  if (!menu) return;
+  if (mobileMenuOpen) {
+    menu.classList.remove('hidden');
+    menu.style.maxHeight = '0';
+    menu.style.opacity = '0';
+    requestAnimationFrame(() => { menu.style.maxHeight = '400px'; menu.style.opacity = '1'; });
+    if (icon) { icon.className = 'fas fa-xmark text-gray-500 dark:text-gray-400 text-lg'; }
+    document.addEventListener('click', closeMobileMenuOutside);
+  } else {
+    menu.style.maxHeight = '0';
+    menu.style.opacity = '0';
+    if (icon) { icon.className = 'fas fa-bars text-gray-500 dark:text-gray-400 text-lg'; }
+    setTimeout(() => menu.classList.add('hidden'), 200);
+    document.removeEventListener('click', closeMobileMenuOutside);
+  }
+}
+function closeMobileMenuOutside(e) {
+  const menu = document.getElementById('mobile-menu');
+  const btn = document.getElementById('hamburger-btn');
+  if (menu && btn && !menu.contains(e.target) && !btn.contains(e.target)) toggleMobileMenu();
+}
+
 function getCurrentPage() {
   const path = window.location.pathname;
   if (path.endsWith('features.html')) return 'features';
@@ -54,38 +81,40 @@ function renderNav() {
     { id:'about', href:'about.html', fr:'À propos', en:'About' },
   ];
   const navLinks = links.map(l =>
-    `<a href="${l.href}" class="nav-link px-3 py-2 text-sm font-medium rounded-lg transition-colors ${l.id===page?'text-indigo-400 dark:text-indigo-400 text-indigo-600':'text-gray-500 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white'}" data-fr="${l.fr}" data-en="${l.en}">${l.fr}</a>`
+    `<a href="${l.href}" class="px-3 py-2 text-sm font-medium rounded-lg transition-colors ${l.id===page?'text-indigo-400 dark:text-indigo-400 text-indigo-600':'text-gray-500 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white'}" data-fr="${l.fr}" data-en="${l.en}">${l.fr}</a>`
   ).join('');
   const mobileLinks = links.map(l =>
-    `<a href="${l.href}" class="block px-4 py-3 rounded-lg text-sm font-medium transition-colors ${l.id===page?'bg-indigo-50 dark:bg-indigo-500/10 text-indigo-600 dark:text-indigo-400':'text-gray-600 dark:text-gray-400 hover:bg-gray-50 dark:hover:bg-white/5'}" data-fr="${l.fr}" data-en="${l.en}">${l.fr}</a>`
+    `<a href="${l.href}" class="block px-4 py-3 rounded-xl text-base font-medium transition-colors ${l.id===page?'bg-indigo-50 dark:bg-indigo-500/10 text-indigo-600 dark:text-indigo-400':'text-gray-600 dark:text-gray-400 hover:bg-gray-50 dark:hover:bg-white/5 active:bg-gray-100 dark:active:bg-white/10'}" data-fr="${l.fr}" data-en="${l.en}">${l.fr}</a>`
   ).join('');
 
   const nav = document.getElementById('site-nav');
   if (!nav) return;
   nav.innerHTML = `
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="flex items-center justify-between h-16">
-        <a href="index.html" class="flex items-center gap-3 group">
-          <img src="assets/logo.svg" alt="Logo" class="w-8 h-8 rounded-lg group-hover:scale-110 transition-transform">
-          <span class="font-bold text-lg text-gray-900 dark:text-white">YT Downloader</span>
-        </a>
-        <div class="hidden md:flex items-center gap-1">${navLinks}</div>
-        <div class="flex items-center gap-2">
-          <button onclick="toggleLang()" class="px-3 py-1.5 text-xs font-semibold rounded-lg bg-gray-100 dark:bg-white/5 border border-gray-200 dark:border-white/10 text-gray-500 dark:text-gray-400 hover:bg-indigo-500 hover:text-white hover:border-indigo-500 transition-all" id="lang-btn">EN</button>
-          <button onclick="toggleTheme()" class="p-2 rounded-lg bg-gray-100 dark:bg-white/5 border border-gray-200 dark:border-white/10 text-gray-500 dark:text-gray-400 hover:bg-indigo-50 dark:hover:bg-indigo-500/10 transition-all" id="theme-btn">
-            <i id="theme-icon" class="fas ${theme==='dark'?'fa-sun':'fa-moon'} text-sm"></i>
-          </button>
-          <a href="https://github.com/akaletekoffilevis/youtube-downloader" target="_blank" class="hidden sm:flex items-center gap-2 px-3 py-1.5 text-xs font-semibold rounded-lg bg-gray-100 dark:bg-white/5 border border-gray-200 dark:border-white/10 text-gray-500 dark:text-gray-400 hover:bg-gray-200 dark:hover:bg-white/10 transition-all">
-            <i class="fab fa-github"></i> GitHub
+    <div class="fixed top-0 left-0 right-0 z-50 bg-white/80 dark:bg-[#0a0a14]/80 backdrop-blur-xl border-b border-gray-200 dark:border-white/5">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6">
+        <div class="flex items-center justify-between h-16">
+          <a href="index.html" class="flex items-center gap-2.5 group shrink-0">
+            <img src="assets/logo.svg" alt="Logo" class="w-8 h-8 rounded-lg group-hover:scale-110 transition-transform">
+            <span class="font-bold text-lg text-gray-900 dark:text-white hidden sm:inline">YT Downloader</span>
           </a>
-          <button onclick="document.getElementById('mobile-menu').classList.toggle('hidden')" class="md:hidden p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-white/5">
-            <i class="fas fa-bars text-gray-500 dark:text-gray-400"></i>
-          </button>
+          <div class="hidden md:flex items-center gap-1">${navLinks}</div>
+          <div class="flex items-center gap-2 shrink-0">
+            <button onclick="toggleLang()" class="px-2.5 py-1.5 text-xs font-semibold rounded-lg bg-gray-100 dark:bg-white/5 border border-gray-200 dark:border-white/10 text-gray-500 dark:text-gray-400 hover:bg-indigo-500 hover:text-white hover:border-indigo-500 transition-all" id="lang-btn">EN</button>
+            <button onclick="toggleTheme()" class="p-2 rounded-lg bg-gray-100 dark:bg-white/5 border border-gray-200 dark:border-white/10 text-gray-500 dark:text-gray-400 hover:bg-indigo-50 dark:hover:bg-indigo-500/10 transition-all hidden sm:flex">
+              <i id="theme-icon" class="fas ${theme==='dark'?'fa-sun':'fa-moon'} text-sm"></i>
+            </button>
+            <a href="https://github.com/akaletekoffilevis/youtube-downloader" target="_blank" class="hidden sm:flex items-center gap-2 px-3 py-1.5 text-xs font-semibold rounded-lg bg-gray-100 dark:bg-white/5 border border-gray-200 dark:border-white/10 text-gray-500 dark:text-gray-400 hover:bg-gray-200 dark:hover:bg-white/10 transition-all">
+              <i class="fab fa-github"></i> GitHub
+            </a>
+            <button onclick="toggleMobileMenu()" id="hamburger-btn" class="md:hidden p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-white/5 active:bg-gray-200 dark:active:bg-white/10">
+              <i id="hamburger-icon" class="fas fa-bars text-gray-500 dark:text-gray-400 text-lg"></i>
+            </button>
+          </div>
         </div>
       </div>
     </div>
-    <div id="mobile-menu" class="md:hidden hidden px-4 pb-4">
-      <div class="bg-white dark:bg-gray-900/80 backdrop-blur-xl border border-gray-200 dark:border-white/10 rounded-xl p-2 shadow-xl">${mobileLinks}</div>
+    <div id="mobile-menu" class="md:hidden hidden fixed top-16 left-0 right-0 z-40 px-4 pb-4" style="max-height:0;opacity:0;transition:all 0.25s ease">
+      <div class="bg-white/95 dark:bg-gray-900/95 backdrop-blur-2xl border border-gray-200 dark:border-white/10 rounded-2xl p-3 shadow-2xl shadow-black/10 dark:shadow-black/40">${mobileLinks}</div>
     </div>`;
 }
 
@@ -95,17 +124,17 @@ function renderFooter() {
   footer.innerHTML = `
     <div class="max-w-7xl mx-auto px-4 py-8">
       <div class="flex flex-col md:flex-row items-center justify-between gap-4">
-        <div class="flex items-center gap-3">
+        <div class="flex items-center gap-2.5">
           <img src="assets/logo.svg" alt="Logo" class="w-6 h-6 rounded">
           <span class="text-sm font-semibold text-gray-600 dark:text-gray-300">YT Downloader</span>
         </div>
         <div class="text-xs text-gray-400">&copy; 2026 Koffi Levis Akalete. MIT License.</div>
-        <div class="flex items-center gap-5 text-xs">
+        <div class="flex items-center gap-4 text-xs flex-wrap justify-center">
           <a href="index.html" class="text-gray-400 hover:text-indigo-500 transition-colors" data-fr="Accueil" data-en="Home">Accueil</a>
           <a href="features.html" class="text-gray-400 hover:text-indigo-500 transition-colors" data-fr="Fonctionnalités" data-en="Features">Fonctionnalités</a>
           <a href="download.html" class="text-gray-400 hover:text-indigo-500 transition-colors" data-fr="Télécharger" data-en="Download">Télécharger</a>
-          <a href="https://github.com/akaletekoffilevis/youtube-downloader" target="_blank" class="text-gray-400 hover:text-indigo-500 transition-colors"><i class="fab fa-github"></i> GitHub</a>
-          <a href="mailto:koffilevis21@gmail.com" class="text-gray-400 hover:text-indigo-500 transition-colors"><i class="fas fa-envelope"></i> Contact</a>
+          <a href="https://github.com/akaletekoffilevis/youtube-downloader" target="_blank" class="text-gray-400 hover:text-indigo-500 transition-colors"><i class="fab fa-github"></i></a>
+          <a href="mailto:koffilevis21@gmail.com" class="text-gray-400 hover:text-indigo-500 transition-colors"><i class="fas fa-envelope"></i></a>
         </div>
       </div>
     </div>`;

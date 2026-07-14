@@ -2,8 +2,16 @@
 <html lang="fr" class="dark scroll-smooth">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Télécharger — YT Downloader</title>
+<meta name="description" content="Téléchargez YT Downloader gratuitement. Windows, Linux, macOS — tout est inclus.">
+<meta property="og:title" content="Télécharger — YT Downloader">
+<meta property="og:description" content="Application de bureau gratuite pour télécharger des vidéos YouTube. Windows, Linux, macOS.">
+<meta property="og:image" content="https://yt-downloader-docs.vercel.app/assets/og-image.svg">
+<meta property="og:url" content="https://yt-downloader-docs.vercel.app/download.html">
+<meta property="og:type" content="website">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Télécharger — YT Downloader">
+<meta name="twitter:description" content="Application de bureau gratuite pour télécharger des vidéos YouTube.">
+<meta name="twitter:image" content="https://yt-downloader-docs.vercel.app/assets/og-image.svg">
 <link rel="icon" type="image/svg+xml" href="assets/logo.svg">
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
 <script src="https://cdn.tailwindcss.com"></script>
@@ -15,18 +23,18 @@ tailwind.config = { darkMode:'class', theme:{ extend:{ fontFamily:{ sans:['Inter
 <body class="bg-white dark:bg-[#0a0a14] text-gray-900 dark:text-white font-sans antialiased transition-colors">
 <nav id="site-nav"></nav>
 
-<section class="pt-32 pb-24">
+<section class="pt-24 sm:pt-32 pb-16 sm:pb-24">
   <div class="max-w-4xl mx-auto px-4">
-    <div class="text-center mb-16">
-      <h1 class="text-4xl sm:text-5xl font-black text-gray-900 dark:text-white mb-4" data-fr="Télécharger" data-en="Download">Télécharger</h1>
+    <div class="text-center mb-12 sm:mb-16">
+      <h1 class="text-3xl sm:text-4xl lg:text-5xl font-black text-gray-900 dark:text-white mb-4" data-fr="Télécharger" data-en="Download">Télécharger</h1>
       <p class="text-gray-500 dark:text-gray-400 text-lg" data-fr="Choisissez votre plateforme. Tout est inclus — yt-dlp intégré." data-en="Choose your platform. Everything is included — yt-dlp bundled.">Choisissez votre plateforme. Tout est inclus — yt-dlp intégré.</p>
     </div>
 
     <!-- Windows -->
     <div class="mb-6">
       <div class="rounded-2xl bg-gray-50 dark:bg-white/[0.02] border border-gray-200 dark:border-white/5 overflow-hidden">
-        <div class="flex items-center gap-4 px-6 py-4 border-b border-gray-100 dark:border-white/5">
-          <i class="fab fa-windows text-2xl text-brand-500 dark:text-brand-400"></i>
+        <div class="flex items-center gap-3 sm:gap-4 px-4 sm:px-6 py-3 sm:py-4 border-b border-gray-100 dark:border-white/5">
+          <i class="fab fa-windows text-xl sm:text-2xl text-brand-500 dark:text-brand-400"></i>
           <div><h3 class="font-bold text-gray-900 dark:text-white">Windows</h3><p class="text-xs text-gray-400">Windows 10/11 x64</p></div>
         </div>
         <div class="p-2" id="dl-windows"><div class="px-4 py-3 text-sm text-gray-400 text-center" data-fr="Chargement..." data-en="Loading...">Chargement...</div></div>
@@ -36,8 +44,8 @@ tailwind.config = { darkMode:'class', theme:{ extend:{ fontFamily:{ sans:['Inter
     <!-- Linux -->
     <div class="mb-6">
       <div class="rounded-2xl bg-gray-50 dark:bg-white/[0.02] border border-gray-200 dark:border-white/5 overflow-hidden">
-        <div class="flex items-center gap-4 px-6 py-4 border-b border-gray-100 dark:border-white/5">
-          <i class="fab fa-linux text-2xl text-brand-500 dark:text-brand-400"></i>
+        <div class="flex items-center gap-3 sm:gap-4 px-4 sm:px-6 py-3 sm:py-4 border-b border-gray-100 dark:border-white/5">
+          <i class="fab fa-linux text-xl sm:text-2xl text-brand-500 dark:text-brand-400"></i>
           <div><h3 class="font-bold text-gray-900 dark:text-white">Linux</h3><p class="text-xs text-gray-400">Debian, Fedora, AppImage</p></div>
         </div>
         <div class="p-2" id="dl-linux"><div class="px-4 py-3 text-sm text-gray-400 text-center" data-fr="Chargement..." data-en="Loading...">Chargement...</div></div>
@@ -47,8 +55,8 @@ tailwind.config = { darkMode:'class', theme:{ extend:{ fontFamily:{ sans:['Inter
     <!-- macOS -->
     <div class="mb-8">
       <div class="rounded-2xl bg-gray-50 dark:bg-white/[0.02] border border-gray-200 dark:border-white/5 overflow-hidden">
-        <div class="flex items-center gap-4 px-6 py-4 border-b border-gray-100 dark:border-white/5">
-          <i class="fab fa-apple text-2xl text-brand-500 dark:text-brand-400"></i>
+        <div class="flex items-center gap-3 sm:gap-4 px-4 sm:px-6 py-3 sm:py-4 border-b border-gray-100 dark:border-white/5">
+          <i class="fab fa-apple text-xl sm:text-2xl text-brand-500 dark:text-brand-400"></i>
           <div><h3 class="font-bold text-gray-900 dark:text-white">macOS</h3><p class="text-xs text-gray-400">Apple Silicon + Intel</p></div>
         </div>
         <div class="p-2" id="dl-macos"><div class="px-4 py-3 text-sm text-gray-400 text-center" data-fr="Chargement..." data-en="Loading...">Chargement...</div></div>
