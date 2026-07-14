@@ -1,65 +1,146 @@
 <p align="center">
-  <img src="assets/logo.svg" alt="YouTube Downloader" width="100">
-</p>
-
-<h1 align="center">YouTube Downloader — Landing Page</h1>
-
-<p align="center">
-  Page de présentation bilingue FR/EN pour l'application YouTube Downloader.
-  <br>Déployable directement sur <a href="https://vercel.com">Vercel</a>.
+  <img src="assets/og-image.svg" alt="YouTube Downloader" width="100%"/>
 </p>
 
 <p align="center">
-  <a href="https://ytdownloader-landing.vercel.app">Voir en ligne</a> ·
-  <a href="https://github.com/akaletekoffilevis/youtube-downloader">Repo App</a> ·
-  <a href="https://github.com/akaletekoffilevis/ytdownloader-landing/issues">Signaler un bug</a>
+  <a href="index.html">Accueil</a> ·
+  <a href="features.html">Fonctionnalités</a> ·
+  <a href="download.html">Télécharger</a> ·
+  <a href="changelog.html">Changelog</a> ·
+  <a href="about.html">À propos</a> ·
+  <a href="contact.html">Contact</a>
+</p>
+
+<p align="center">
+  <img src="https://img.shields.io/badge/version-0.2.0-6366f1?style=flat-square" alt="Version"/>
+  <img src="https://img.shields.io/badge/license-MIT-green?style=flat-square" alt="License"/>
+  <img src="https://img.shields.io/badge/platform-Windows%20%7C%20Linux%20%7C%20macOS-lightgrey?style=flat-square" alt="Platform"/>
+  <img src="https://img.shields.io/badge/deploy-Vercel-000?style=flat-square&logo=vercel" alt="Vercel"/>
 </p>
 
 ---
 
-## Description
+## YouTube Downloader — Landing Page
 
-Landing page statique (HTML/CSS/JS vanilla) pour présenter l'application YouTube Downloader. Entièrement bilingue avec un switcher FR/EN en un clic.
+Site web officiel de l'application **YouTube Downloader**. Site multi-pages déployé sur Vercel avec contact form via SMTP (Nodemailer).
 
-## Sections
+> **URL :** [yt-downloader-docs.vercel.app](https://yt-downloader-docs.vercel.app)
+> **Auteur :** Koffi Levis Akalete · [koffilevis21@gmail.com](mailto:koffilevis21@gmail.com)
 
-- **Hero** — Titre, description, boutons GitHub + en savoir plus, plateformes
-- **Fonctionnalités** — 6 cartes (recherche, file d'attente, qualité, thèmes, bilingue, dossier)
-- **Tech stack** — Tauri 2, Rust, yt-dlp, HTML/CSS/JS
-- **Témoignages** — 3 cartes (placeholders à remplacer)
-- **FAQ** — 4 questions/réponses en details/summary
-- **CTA** — Dernier appel à GitHub
-- **Footer** — Version, copyright, liens GitHub/Contact
+---
 
-## Déploiement Vercel
+## Pages
 
-1. Importer le repo `ytdownloader-landing` sur [vercel.com/new](https://vercel.com/new)
-2. Framework : **Other** (HTML statique)
-3. Deploy
+| Page | Description |
+|------|-------------|
+| **index.html** | Page d'accueil avec hero, features highlights, CTA |
+| **features.html** | Liste complète des fonctionnalités |
+| **download.html** | Téléchargement direct depuis GitHub Releases |
+| **about.html** | À propos, stack technique, roadmap |
+| **changelog.html** | Changelog complet v0.1.0 → v0.2.0 |
+| **contact.html** | Formulaire de contact (Vercel SMTP) |
+
+---
+
+## Technologies
+
+- **HTML5** — Structure sémantique multi-pages
+- **CSS3** — Tailwind CSS via CDN, responsive design, dark mode auto (prefers-color-scheme)
+- **JavaScript** — Navigation commune (`shared.js`), i18n FR/EN dynamique
+- **Vercel** — Déploiement statique + serverless functions
+- **Nodemailer** — Envoi d'emails SMTP via Gmail
+- **Font Awesome 7** — Icônes
+
+---
+
+## Fonctionnalités du site
+
+- **Design responsive** — Mobile-first, hamburger menu, backdrop blur
+- **Dark mode** — Détection automatique `prefers-color-scheme`
+- **Bilingue FR/EN** — Toggle avec sauvegarde localStorage
+- **Liens de téléchargement** — Dynamiques depuis GitHub API (`releases/latest`)
+- **Contact form** — Envoi server-side via Vercel, CORS géré
+- **Google Analytics** — Tracking ID `G-3W35120B94`
+- **OG Tags** — Open Graph + Twitter Card pour SEO
+
+---
+
+## Installation
+
+```bash
+# Cloner
+git clone https://github.com/akaletekoffilevis/ytdownloader-landing.git
+cd ytdownloader-landing
+
+# Installer les dépendances (Nodemailer pour le contact form)
+npm install
+
+# Lancer en local
+npx serve .
+# ou
+python3 -m http.server 8080
+```
+
+---
+
+## Vercel
+
+### Variables d'environnement (pour le contact form)
+
+```
+SMTP_HOST=smtp.gmail.com
+SMTP_PORT=465
+SMTP_USER=koffilevis21@gmail.com
+SMTP_PASS=ydkv xobs uylu gifz
+CONTACT_EMAIL=koffilevis21@gmail.com
+```
+
+### Deploy
+
+Le site est déployé sur Vercel :
+- **Production :** `yt-downloader-docs.vercel.app`
+- **Repo :** `github.com/akaletekoffilevis/ytdownloader-landing`
+- **Branch :** `main`
+
+---
 
 ## Structure
 
 ```
 ytdownloader-landing/
-├── index.html        # Page principale (FR/EN)
-├── style.css         # Styles (dark theme, glassmorphism)
+├── index.html          # Page d'accueil
+├── features.html       # Fonctionnalités
+├── download.html       # Téléchargement
+├── about.html          # À propos
+├── changelog.html      # Changelog
+├── contact.html        # Contact
+├── shared.js           # Nav + i18n + downloads partagés
 ├── assets/
-│   └── logo.svg      # Logo de l'application
-├── .gitignore
-└── README.md
+│   └── og-image.svg    # Image Open Graph (1200x630)
+├── api/
+│   └── contact.js      # Vercel serverless — envoi SMTP
+├── package.json        # nodemailer dependency
+├── vercel.json         # Routing (rewrites)
+├── .env                # Variables SMTP (gitignored)
+└── README.md           # Ce fichier
 ```
 
-## Techno
+---
 
-- HTML5 / CSS3 / JavaScript vanilla
-- Google Fonts (Inter)
-- Font Awesome 7 (icônes via CDN)
-- Aucune dépendance npm
+## Contact
 
-## Auteur
+- **Email :** [koffilevis21@gmail.com](mailto:koffilevis21@gmail.com)
+- **Formulaire :** [yt-downloader-docs.vercel.app/contact.html](https://yt-downloader-docs.vercel.app/contact.html)
+- **GitHub :** [@akaletekoffilevis](https://github.com/akaletekoffilevis)
 
-**Koffi Levis Akalete** — [koffilevis21@gmail.com](mailto:koffilevis21@gmail.com)
+---
 
 ## Licence
 
-MIT — © 2026 Koffi Levis Akalete
+Ce site est sous licence **MIT**.
+
+---
+
+<p align="center">
+  Made with ❤️ by Koffi Levis Akalete · © 2026 All Rights Reserved
+</p>
