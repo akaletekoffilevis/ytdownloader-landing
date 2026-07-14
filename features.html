@@ -71,7 +71,27 @@ tailwind.config = { darkMode:'class', theme:{ extend:{ fontFamily:{ sans:['Inter
       </div>
     </div>
 
-    <!-- Feature 3: Quality -->
+    <!-- Feature 3: Theme -->
+    <div class="grid lg:grid-cols-2 gap-8 lg:gap-12 items-center mb-16 sm:mb-24">
+      <div class="order-2 lg:order-1">
+        <div class="w-12 h-12 sm:w-14 sm:h-14 rounded-2xl bg-brand-100 dark:bg-brand-500/10 flex items-center justify-center mb-5 sm:mb-6"><i class="fas fa-palette text-brand-500 dark:text-brand-400 text-lg sm:text-xl"></i></div>
+        <h3 class="text-xl sm:text-2xl font-bold text-gray-900 dark:text-white mb-3" data-fr="Thème clair & sombre" data-en="Light & dark theme">Thème clair & sombre</h3>
+        <p class="text-gray-500 dark:text-gray-400 leading-relaxed mb-4" data-fr="Design iOS premium avec deux thèmes. Dark mode true black pour les écrans OLED." data-en="Premium iOS design with two themes. True black dark mode for OLED screens.">Design iOS premium avec deux thèmes. Dark mode true black pour les écrans OLED.</p>
+        <ul class="space-y-2">
+          <li class="flex items-center gap-2 text-sm text-gray-500 dark:text-gray-400"><i class="fas fa-check text-brand-500 dark:text-brand-400 text-xs"></i> <span data-fr="Glassmorphism premium" data-en="Premium glassmorphism">Glassmorphism premium</span></li>
+          <li class="flex items-center gap-2 text-sm text-gray-500 dark:text-gray-400"><i class="fas fa-check text-brand-500 dark:text-brand-400 text-xs"></i> <span data-fr="Dark mode true black" data-en="True black dark mode">Dark mode true black</span></li>
+          <li class="flex items-center gap-2 text-sm text-gray-500 dark:text-gray-400"><i class="fas fa-check text-brand-500 dark:text-brand-400 text-xs"></i> <span data-fr="Préférence sauvegardée" data-en="Preference saved">Préférence sauvegardée</span></li>
+        </ul>
+      </div>
+      <div class="rounded-2xl bg-gray-100 dark:bg-white/[0.02] border border-gray-200 dark:border-white/10 p-2">
+        <div class="rounded-xl bg-gray-50 dark:bg-[#0f0f1a] overflow-hidden" style="aspect-ratio:16/10">
+          <img src="assets/screenshot-theme.png" alt="Theme" class="w-full h-full object-cover" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+          <div class="w-full h-full flex flex-col items-center justify-center text-gray-300 dark:text-gray-600" style="display:none"><i class="fas fa-palette text-3xl mb-2 opacity-30"></i><span class="text-xs" data-fr="Capture à venir" data-en="Coming soon">Capture à venir</span></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Feature 4: Quality -->
     <div class="grid lg:grid-cols-2 gap-8 lg:gap-12 items-center mb-16 sm:mb-24">
       <div>
         <div class="w-12 h-12 sm:w-14 sm:h-14 rounded-2xl bg-brand-100 dark:bg-brand-500/10 flex items-center justify-center mb-5 sm:mb-6"><i class="fas fa-sliders text-brand-500 dark:text-brand-400 text-lg sm:text-xl"></i></div>
@@ -91,32 +111,12 @@ tailwind.config = { darkMode:'class', theme:{ extend:{ fontFamily:{ sans:['Inter
       </div>
     </div>
 
-    <!-- Feature 4: Theme -->
-    <div class="grid lg:grid-cols-2 gap-8 lg:gap-12 items-center mb-16 sm:mb-24">
-      <div class="order-2 lg:order-1 rounded-2xl bg-gray-100 dark:bg-white/[0.02] border border-gray-200 dark:border-white/10 p-2">
-        <div class="rounded-xl bg-gray-50 dark:bg-[#0f0f1a] overflow-hidden" style="aspect-ratio:16/10">
-          <img src="assets/screenshot-theme.png" alt="Theme" class="w-full h-full object-cover" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
-          <div class="w-full h-full flex flex-col items-center justify-center text-gray-300 dark:text-gray-600" style="display:none"><i class="fas fa-palette text-3xl mb-2 opacity-30"></i><span class="text-xs" data-fr="Capture à venir" data-en="Coming soon">Capture à venir</span></div>
-        </div>
-      </div>
-      <div class="order-1 lg:order-2">
-        <div class="w-12 h-12 sm:w-14 sm:h-14 rounded-2xl bg-brand-100 dark:bg-brand-500/10 flex items-center justify-center mb-5 sm:mb-6"><i class="fas fa-palette text-brand-500 dark:text-brand-400 text-lg sm:text-xl"></i></div>
-        <h3 class="text-xl sm:text-2xl font-bold text-gray-900 dark:text-white mb-3" data-fr="Thème clair & sombre" data-en="Light & dark theme">Thème clair & sombre</h3>
-        <p class="text-gray-500 dark:text-gray-400 leading-relaxed mb-4" data-fr="Design glassmorphism premium avec deux thèmes. Switch instantané depuis le menu." data-en="Premium glassmorphism design with two themes. Instant switch from the menu.">Design glassmorphism premium avec deux thèmes. Switch instantané depuis le menu.</p>
-        <ul class="space-y-2">
-          <li class="flex items-center gap-2 text-sm text-gray-500 dark:text-gray-400"><i class="fas fa-check text-brand-500 dark:text-brand-400 text-xs"></i> <span data-fr="Glassmorphism premium" data-en="Premium glassmorphism">Glassmorphism premium</span></li>
-          <li class="flex items-center gap-2 text-sm text-gray-500 dark:text-gray-400"><i class="fas fa-check text-brand-500 dark:text-brand-400 text-xs"></i> <span data-fr="Switch instantané" data-en="Instant switch">Switch instantané</span></li>
-          <li class="flex items-center gap-2 text-sm text-gray-500 dark:text-gray-400"><i class="fas fa-check text-brand-500 dark:text-brand-400 text-xs"></i> <span data-fr="Préférence sauvegardée" data-en="Preference saved">Préférence sauvegardée</span></li>
-        </ul>
-      </div>
-    </div>
-
     <!-- Feature 5: Bilingual -->
     <div class="grid lg:grid-cols-2 gap-8 lg:gap-12 items-center mb-16 sm:mb-24">
-      <div>
+      <div class="order-2 lg:order-1">
         <div class="w-12 h-12 sm:w-14 sm:h-14 rounded-2xl bg-brand-100 dark:bg-brand-500/10 flex items-center justify-center mb-5 sm:mb-6"><i class="fas fa-language text-brand-500 dark:text-brand-400 text-lg sm:text-xl"></i></div>
         <h3 class="text-xl sm:text-2xl font-bold text-gray-900 dark:text-white mb-3" data-fr="Bilingue FR/EN" data-en="Bilingual FR/EN">Bilingue FR/EN</h3>
-        <p class="text-gray-500 dark:text-gray-400 leading-relaxed mb-4" data-fr="Interface disponible en français et en anglais. Changement en un clic depuis le menu." data-en="Interface available in French and English. Switch with one click from the menu.">Interface disponible en français et en anglais. Changement en un clic depuis le menu.</p>
+        <p class="text-gray-500 dark:text-gray-400 leading-relaxed mb-4" data-fr="Interface disponible en français et en anglais. 80+ traductions, changement instantané." data-en="Interface available in French and English. 80+ translations, instant switch.">Interface disponible en français et en anglais. 80+ traductions, changement instantané.</p>
         <ul class="space-y-2">
           <li class="flex items-center gap-2 text-sm text-gray-500 dark:text-gray-400"><i class="fas fa-check text-brand-500 dark:text-brand-400 text-xs"></i> <span data-fr="Traduction complète" data-en="Full translation">Traduction complète</span></li>
           <li class="flex items-center gap-2 text-sm text-gray-500 dark:text-gray-400"><i class="fas fa-check text-brand-500 dark:text-brand-400 text-xs"></i> <span data-fr="Sauvegarde automatique" data-en="Auto save">Sauvegarde automatique</span></li>
@@ -130,18 +130,18 @@ tailwind.config = { darkMode:'class', theme:{ extend:{ fontFamily:{ sans:['Inter
       </div>
     </div>
 
-    <!-- Feature 6: Custom folder -->
-    <div class="grid lg:grid-cols-2 gap-12 items-center">
+    <!-- Feature 6: Settings & Folder -->
+    <div class="grid lg:grid-cols-2 gap-8 lg:gap-12 items-center">
       <div class="order-2 lg:order-1 rounded-2xl bg-gray-100 dark:bg-white/[0.02] border border-gray-200 dark:border-white/10 p-2">
         <div class="rounded-xl bg-gray-50 dark:bg-[#0f0f1a] overflow-hidden" style="aspect-ratio:16/10">
-          <img src="assets/screenshot-folder.png" alt="Folder" class="w-full h-full object-cover" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
-          <div class="w-full h-full flex flex-col items-center justify-center text-gray-300 dark:text-gray-600" style="display:none"><i class="fas fa-folder-open text-3xl mb-2 opacity-30"></i><span class="text-xs" data-fr="Capture à venir" data-en="Coming soon">Capture à venir</span></div>
+          <img src="assets/screenshot-folder.png" alt="Settings" class="w-full h-full object-cover" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+          <div class="w-full h-full flex flex-col items-center justify-center text-gray-300 dark:text-gray-600" style="display:none"><i class="fas fa-gear text-3xl mb-2 opacity-30"></i><span class="text-xs" data-fr="Capture à venir" data-en="Coming soon">Capture à venir</span></div>
         </div>
       </div>
       <div class="order-1 lg:order-2">
-        <div class="w-12 h-12 sm:w-14 sm:h-14 rounded-2xl bg-brand-100 dark:bg-brand-500/10 flex items-center justify-center mb-5 sm:mb-6"><i class="fas fa-folder-open text-brand-500 dark:text-brand-400 text-lg sm:text-xl"></i></div>
-        <h3 class="text-xl sm:text-2xl font-bold text-gray-900 dark:text-white mb-3" data-fr="Dossier personnalisé" data-en="Custom folder">Dossier personnalisé</h3>
-        <p class="text-gray-500 dark:text-gray-400 leading-relaxed" data-fr="Choisissez où sauvegarder vos téléchargements avec le sélecteur de dossier natif." data-en="Choose where to save your downloads with the native folder picker.">Choisissez où sauvegarder vos téléchargements avec le sélecteur de dossier natif.</p>
+        <div class="w-12 h-12 sm:w-14 sm:h-14 rounded-2xl bg-brand-100 dark:bg-brand-500/10 flex items-center justify-center mb-5 sm:mb-6"><i class="fas fa-gear text-brand-500 dark:text-brand-400 text-lg sm:text-xl"></i></div>
+        <h3 class="text-xl sm:text-2xl font-bold text-gray-900 dark:text-white mb-3" data-fr="Paramètres unifiés" data-en="Unified settings">Paramètres unifiés</h3>
+        <p class="text-gray-500 dark:text-gray-400 leading-relaxed" data-fr="Thème, langue, concurrence, dossier de téléchargement — tout dans un seul panneau." data-en="Theme, language, concurrency, download folder — everything in one panel.">Thème, langue, concurrence, dossier de téléchargement — tout dans un seul panneau.</p>
       </div>
     </div>
 

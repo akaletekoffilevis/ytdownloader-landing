@@ -4,3 +4,6 @@ node_modules/
 .env
 .env.local
 server/.env
+.vercel
+.env*
+assets/screenshots/README.md
