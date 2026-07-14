@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="fr" class="dark scroll-smooth">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Versions — YT Downloader</title>
+<link rel="icon" type="image/svg+xml" href="assets/logo.svg">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+<script src="https://cdn.tailwindcss.com"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<script>
+tailwind.config = { darkMode:'class', theme:{ extend:{ fontFamily:{ sans:['Inter','system-ui','sans-serif'] }, colors:{ brand:{50:'#eef2ff',100:'#e0e7ff',200:'#c7d2fe',300:'#a5b4fc',400:'#818cf8',500:'#6366f1',600:'#4f46e5'} } } } }
+</script>
+</head>
+<body class="bg-white dark:bg-[#0a0a14] text-gray-900 dark:text-white font-sans antialiased transition-colors">
+<nav id="site-nav"></nav>
+
+<section class="pt-32 pb-24">
+  <div class="max-w-3xl mx-auto px-4">
+    <div class="text-center mb-16">
+      <h1 class="text-4xl sm:text-5xl font-black text-gray-900 dark:text-white mb-4" data-fr="Versions & Changelog" data-en="Versions & Changelog">Versions & Changelog</h1>
+      <p class="text-gray-500 dark:text-gray-400 text-lg" data-fr="Historique complet des mises à jour" data-en="Full update history">Historique complet des mises à jour</p>
+    </div>
+
+    <div class="relative">
+      <!-- Timeline line -->
+      <div class="absolute left-6 top-0 bottom-0 w-px bg-gray-200 dark:bg-white/10"></div>
+
+      <!-- v0.2.0 -->
+      <div class="relative mb-12 pl-16">
+        <div class="absolute left-4 top-1 w-5 h-5 rounded-full bg-brand-500 border-4 border-white dark:border-[#0a0a14]"></div>
+        <div class="p-6 rounded-2xl bg-gray-50 dark:bg-white/[0.02] border border-gray-200 dark:border-white/5">
+          <div class="flex items-center gap-3 mb-3">
+            <span class="px-3 py-1 rounded-full bg-brand-100 dark:bg-brand-500/10 text-brand-600 dark:text-brand-400 text-xs font-bold">v0.2.0</span>
+            <span class="text-sm text-gray-400">14 Juillet 2026</span>
+            <span class="px-2 py-0.5 rounded-full bg-green-100 dark:bg-green-500/10 text-green-600 dark:text-green-400 text-xs font-semibold" data-fr="Dernière version" data-en="Latest">Dernière version</span>
+          </div>
+          <h3 class="font-bold text-gray-900 dark:text-white mb-3" data-fr="yt-dlp intégré + Refonte landing" data-en="yt-dlp bundled + Landing redesign">yt-dlp intégré + Refonte landing</h3>
+          <ul class="space-y-2 text-sm text-gray-600 dark:text-gray-400">
+            <li class="flex items-start gap-2"><i class="fas fa-plus text-green-500 dark:text-green-400 text-xs mt-1"></i> <span data-fr="yt-dlp maintenant intégré dans l'application (sidecar)" data-en="yt-dlp now bundled inside the app (sidecar)">yt-dlp maintenant intégré dans l'application (sidecar)</span></li>
+            <li class="flex items-start gap-2"><i class="fas fa-plus text-green-500 dark:text-green-400 text-xs mt-1"></i> <span data-fr="Aucune dépendance externe requise à l'installation" data-en="No external dependency required at install">Aucune dépendance externe requise à l'installation</span></li>
+            <li class="flex items-start gap-2"><i class="fas fa-plus text-green-500 dark:text-green-400 text-xs mt-1"></i> <span data-fr="Landing page refondue avec Tailwind CSS — site multi-pages" data-en="Landing page redesigned with Tailwind CSS — multi-page site">Landing page refondue avec Tailwind CSS — site multi-pages</span></li>
+            <li class="flex items-start gap-2"><i class="fas fa-plus text-green-500 dark:text-green-400 text-xs mt-1"></i> <span data-fr="Mode clair/sombre sur le site landing" data-en="Light/dark mode on the landing site">Mode clair/sombre sur le site landing</span></li>
+            <li class="flex items-start gap-2"><i class="fas fa-plus text-green-500 dark:text-green-400 text-xs mt-1"></i> <span data-fr="Page changelog avec historique des versions" data-en="Changelog page with version history">Page changelog avec historique des versions</span></li>
+            <li class="flex items-start gap-2"><i class="fas fa-plus text-green-500 dark:text-green-400 text-xs mt-1"></i> <span data-fr="Landing bilingue FR/EN" data-en="Bilingual FR/EN landing">Landing bilingue FR/EN</span></li>
+            <li class="flex items-start gap-2"><i class="fas fa-plus text-green-500 dark:text-green-400 text-xs mt-1"></i> <span data-fr="Liens de téléchargement directs par fichier (.exe, .msi, .deb, .AppImage, .rpm, .dmg)" data-en="Direct download links per file type (.exe, .msi, .deb, .AppImage, .rpm, .dmg)">Liens de téléchargement directs par fichier (.exe, .msi, .deb, .AppImage, .rpm, .dmg)</span></li>
+            <li class="flex items-start gap-2"><i class="fas fa-bug text-orange-500 dark:text-orange-400 text-xs mt-1"></i> <span data-fr="Fix deadlock progress: stdout drainé séparément" data-en="Fix progress deadlock: stdout drained separately">Fix deadlock progress: stdout drainé séparément</span></li>
+          </ul>
+          <div class="mt-4">
+            <a href="https://github.com/akaletekoffilevis/youtube-downloader/releases/tag/v0.2.0" target="_blank" class="text-xs text-brand-500 dark:text-brand-400 hover:text-brand-600 dark:hover:text-brand-300 font-semibold" data-fr="Voir sur GitHub" data-en="View on GitHub">Voir sur GitHub <i class="fas fa-external-link-alt ml-1"></i></a>
+          </div>
+        </div>
+      </div>
+
+      <!-- v0.1.0 -->
+      <div class="relative mb-12 pl-16">
+        <div class="absolute left-4 top-1 w-5 h-5 rounded-full bg-gray-400 dark:bg-gray-600 border-4 border-white dark:border-[#0a0a14]"></div>
+        <div class="p-6 rounded-2xl bg-gray-50 dark:bg-white/[0.02] border border-gray-200 dark:border-white/5">
+          <div class="flex items-center gap-3 mb-3">
+            <span class="px-3 py-1 rounded-full bg-gray-100 dark:bg-white/5 text-gray-500 dark:text-gray-400 text-xs font-bold">v0.1.0</span>
+            <span class="text-sm text-gray-400">13 Juillet 2026</span>
+          </div>
+          <h3 class="font-bold text-gray-900 dark:text-white mb-3" data-fr="Première release publique" data-en="First public release">Première release publique</h3>
+          <ul class="space-y-2 text-sm text-gray-600 dark:text-gray-400">
+            <li class="flex items-start gap-2"><i class="fas fa-plus text-green-500 dark:text-green-400 text-xs mt-1"></i> <span data-fr="Recherche YouTube intégrée (ytsearch100)" data-en="Built-in YouTube search (ytsearch100)">Recherche YouTube intégrée (ytsearch100)</span></li>
+            <li class="flex items-start gap-2"><i class="fas fa-plus text-green-500 dark:text-green-400 text-xs mt-1"></i> <span data-fr="Téléchargement avec barre de progression" data-en="Download with progress bar">Téléchargement avec barre de progression</span></li>
+            <li class="flex items-start gap-2"><i class="fas fa-plus text-green-500 dark:text-green-400 text-xs mt-1"></i> <span data-fr="File d'attente (1-5 simultanés)" data-en="Queue (1-5 simultaneous)">File d'attente (1-5 simultanés)</span></li>
+            <li class="flex items-start gap-2"><i class="fas fa-plus text-green-500 dark:text-green-400 text-xs mt-1"></i> <span data-fr="Choix de qualité : 1080p, 720p, 480p, 360p, MP3" data-en="Quality picker: 1080p, 720p, 480p, 360p, MP3">Choix de qualité : 1080p, 720p, 480p, 360p, MP3</span></li>
+            <li class="flex items-start gap-2"><i class="fas fa-plus text-green-500 dark:text-green-400 text-xs mt-1"></i> <span data-fr="Thème clair & sombre (glassmorphism)" data-en="Light & dark theme (glassmorphism)">Thème clair & sombre (glassmorphism)</span></li>
+            <li class="flex items-start gap-2"><i class="fas fa-plus text-green-500 dark:text-green-400 text-xs mt-1"></i> <span data-fr="Interface bilingue FR/EN" data-en="Bilingual FR/EN interface">Interface bilingue FR/EN</span></li>
+            <li class="flex items-start gap-2"><i class="fas fa-plus text-green-500 dark:text-green-400 text-xs mt-1"></i> <span data-fr="Sélection de dossier natif" data-en="Native folder picker">Sélection de dossier natif</span></li>
+            <li class="flex items-start gap-2"><i class="fas fa-plus text-green-500 dark:text-green-400 text-xs mt-1"></i> <span data-fr="Contact support (Web3Forms)" data-en="Contact support (Web3Forms)">Contact support (Web3Forms)</span></li>
+            <li class="flex items-start gap-2"><i class="fas fa-plus text-green-500 dark:text-green-400 text-xs mt-1"></i> <span data-fr="Build Windows, Linux, macOS via GitHub Actions" data-en="Build Windows, Linux, macOS via GitHub Actions">Build Windows, Linux, macOS via GitHub Actions</span></li>
+          </ul>
+          <div class="mt-4">
+            <a href="https://github.com/akaletekoffilevis/youtube-downloader/releases/tag/v0.1.0" target="_blank" class="text-xs text-brand-500 dark:text-brand-400 hover:text-brand-600 dark:hover:text-brand-300 font-semibold" data-fr="Voir sur GitHub" data-en="View on GitHub">Voir sur GitHub <i class="fas fa-external-link-alt ml-1"></i></a>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<footer id="site-footer" class="border-t border-gray-100 dark:border-white/5"></footer>
+<script src="shared.js"></script>
+</body>
+</html>

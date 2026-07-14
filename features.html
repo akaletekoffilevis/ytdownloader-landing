@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="fr" class="dark scroll-smooth">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Fonctionnalités — YT Downloader</title>
+<link rel="icon" type="image/svg+xml" href="assets/logo.svg">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+<script src="https://cdn.tailwindcss.com"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<script>
+tailwind.config = { darkMode:'class', theme:{ extend:{ fontFamily:{ sans:['Inter','system-ui','sans-serif'] }, colors:{ brand:{50:'#eef2ff',100:'#e0e7ff',200:'#c7d2fe',300:'#a5b4fc',400:'#818cf8',500:'#6366f1',600:'#4f46e5'} } } } }
+</script>
+</head>
+<body class="bg-white dark:bg-[#0a0a14] text-gray-900 dark:text-white font-sans antialiased transition-colors">
+<nav id="site-nav"></nav>
+
+<section class="pt-32 pb-24">
+  <div class="max-w-6xl mx-auto px-4">
+    <div class="text-center mb-20">
+      <h1 class="text-4xl sm:text-5xl font-black text-gray-900 dark:text-white mb-4" data-fr="Fonctionnalités" data-en="Features">Fonctionnalités</h1>
+      <p class="text-gray-500 dark:text-gray-400 text-lg max-w-xl mx-auto" data-fr="Tout ce dont vous avez besoin, et rien de plus." data-en="Everything you need, nothing more.">Tout ce dont vous avez besoin, et rien de plus.</p>
+    </div>
+
+    <!-- Feature 1: Search -->
+    <div class="grid lg:grid-cols-2 gap-12 items-center mb-24">
+      <div>
+        <div class="w-14 h-14 rounded-2xl bg-brand-100 dark:bg-brand-500/10 flex items-center justify-center mb-6"><i class="fas fa-search text-brand-500 dark:text-brand-400 text-xl"></i></div>
+        <h3 class="text-2xl font-bold text-gray-900 dark:text-white mb-3" data-fr="Recherche intégrée" data-en="Built-in search">Recherche intégrée</h3>
+        <p class="text-gray-500 dark:text-gray-400 leading-relaxed mb-4" data-fr="Cherchez directement dans l'application sans ouvrir votre navigateur. Jusqu'à 100 résultats par recherche." data-en="Search directly in the app without opening your browser. Up to 100 results per search.">Cherchez directement dans l'application sans ouvrir votre navigateur. Jusqu'à 100 résultats par recherche.</p>
+        <ul class="space-y-2">
+          <li class="flex items-center gap-2 text-sm text-gray-500 dark:text-gray-400"><i class="fas fa-check text-brand-500 dark:text-brand-400 text-xs"></i> <span data-fr="100 résultats par recherche" data-en="100 results per search">100 résultats par recherche</span></li>
+          <li class="flex items-center gap-2 text-sm text-gray-500 dark:text-gray-400"><i class="fas fa-check text-brand-500 dark:text-brand-400 text-xs"></i> <span data-fr="Vidéos, playlists, chaînes" data-en="Videos, playlists, channels">Vidéos, playlists, chaînes</span></li>
+          <li class="flex items-center gap-2 text-sm text-gray-500 dark:text-gray-400"><i class="fas fa-check text-brand-500 dark:text-brand-400 text-xs"></i> <span data-fr="Aperçu avec miniatures" data-en="Preview with thumbnails">Aperçu avec miniatures</span></li>
+        </ul>
+      </div>
+      <div class="rounded-2xl bg-gray-100 dark:bg-white/[0.02] border border-gray-200 dark:border-white/10 p-2">
+        <div class="rounded-xl bg-gray-50 dark:bg-[#0f0f1a] overflow-hidden" style="aspect-ratio:16/10">
+          <img src="assets/screenshot-search.png" alt="Search" class="w-full h-full object-cover" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+          <div class="w-full h-full flex flex-col items-center justify-center text-gray-300 dark:text-gray-600" style="display:none"><i class="fas fa-search text-3xl mb-2 opacity-30"></i><span class="text-xs" data-fr="Capture à venir" data-en="Coming soon">Capture à venir</span></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Feature 2: Queue -->
+    <div class="grid lg:grid-cols-2 gap-12 items-center mb-24">
+      <div class="order-2 lg:order-1 rounded-2xl bg-gray-100 dark:bg-white/[0.02] border border-gray-200 dark:border-white/10 p-2">
+        <div class="rounded-xl bg-gray-50 dark:bg-[#0f0f1a] overflow-hidden" style="aspect-ratio:16/10">
+          <img src="assets/screenshot-queue.png" alt="Queue" class="w-full h-full object-cover" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+          <div class="w-full h-full flex flex-col items-center justify-center text-gray-300 dark:text-gray-600" style="display:none"><i class="fas fa-layer-group text-3xl mb-2 opacity-30"></i><span class="text-xs" data-fr="Capture à venir" data-en="Coming soon">Capture à venir</span></div>
+        </div>
+      </div>
+      <div class="order-1 lg:order-2">
+        <div class="w-14 h-14 rounded-2xl bg-brand-100 dark:bg-brand-500/10 flex items-center justify-center mb-6"><i class="fas fa-layer-group text-brand-500 dark:text-brand-400 text-xl"></i></div>
+        <h3 class="text-2xl font-bold text-gray-900 dark:text-white mb-3" data-fr="File d'attente intelligente" data-en="Smart queue">File d'attente intelligente</h3>
+        <p class="text-gray-500 dark:text-gray-400 leading-relaxed mb-4" data-fr="Gérez plusieurs téléchargements en même temps avec barre de progression temps réel." data-en="Manage multiple downloads simultaneously with real-time progress bar.">Gérez plusieurs téléchargements en même temps avec barre de progression temps réel.</p>
+        <ul class="space-y-2">
+          <li class="flex items-center gap-2 text-sm text-gray-500 dark:text-gray-400"><i class="fas fa-check text-brand-500 dark:text-brand-400 text-xs"></i> <span data-fr="1 à 5 simultanés" data-en="1 to 5 simultaneous">1 à 5 simultanés</span></li>
+          <li class="flex items-center gap-2 text-sm text-gray-500 dark:text-gray-400"><i class="fas fa-check text-brand-500 dark:text-brand-400 text-xs"></i> <span data-fr="Pause, reprise, annulation" data-en="Pause, resume, cancel">Pause, reprise, annulation</span></li>
+          <li class="flex items-center gap-2 text-sm text-gray-500 dark:text-gray-400"><i class="fas fa-check text-brand-500 dark:text-brand-400 text-xs"></i> <span data-fr="Progression en pourcentage" data-en="Percentage progress">Progression en pourcentage</span></li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Feature 3: Quality -->
+    <div class="grid lg:grid-cols-2 gap-12 items-center mb-24">
+      <div>
+        <div class="w-14 h-14 rounded-2xl bg-brand-100 dark:bg-brand-500/10 flex items-center justify-center mb-6"><i class="fas fa-sliders text-brand-500 dark:text-brand-400 text-xl"></i></div>
+        <h3 class="text-2xl font-bold text-gray-900 dark:text-white mb-3" data-fr="Choix de qualité" data-en="Quality picker">Choix de qualité</h3>
+        <p class="text-gray-500 dark:text-gray-400 leading-relaxed mb-4" data-fr="Vous choisissez la qualité avant de télécharger. De la meilleure qualité à l'audio pur." data-en="Choose the quality before downloading. From best quality to pure audio.">Vous choisissez la qualité avant de télécharger. De la meilleure qualité à l'audio pur.</p>
+        <ul class="space-y-2">
+          <li class="flex items-center gap-2 text-sm text-gray-500 dark:text-gray-400"><i class="fas fa-check text-brand-500 dark:text-brand-400 text-xs"></i> 1080p Full HD</li>
+          <li class="flex items-center gap-2 text-sm text-gray-500 dark:text-gray-400"><i class="fas fa-check text-brand-500 dark:text-brand-400 text-xs"></i> 720p / 480p / 360p</li>
+          <li class="flex items-center gap-2 text-sm text-gray-500 dark:text-gray-400"><i class="fas fa-check text-brand-500 dark:text-brand-400 text-xs"></i> <span data-fr="Audio MP3 haute qualité" data-en="High quality MP3 audio">Audio MP3 haute qualité</span></li>
+        </ul>
+      </div>
+      <div class="rounded-2xl bg-gray-100 dark:bg-white/[0.02] border border-gray-200 dark:border-white/10 p-2">
+        <div class="rounded-xl bg-gray-50 dark:bg-[#0f0f1a] overflow-hidden" style="aspect-ratio:16/10">
+          <img src="assets/screenshot-format.png" alt="Format selection" class="w-full h-full object-cover" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+          <div class="w-full h-full flex flex-col items-center justify-center text-gray-300 dark:text-gray-600" style="display:none"><i class="fas fa-sliders text-3xl mb-2 opacity-30"></i><span class="text-xs" data-fr="Capture à venir" data-en="Coming soon">Capture à venir</span></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Feature 4: Theme -->
+    <div class="grid lg:grid-cols-2 gap-12 items-center mb-24">
+      <div class="order-2 lg:order-1 rounded-2xl bg-gray-100 dark:bg-white/[0.02] border border-gray-200 dark:border-white/10 p-2">
+        <div class="rounded-xl bg-gray-50 dark:bg-[#0f0f1a] overflow-hidden" style="aspect-ratio:16/10">
+          <img src="assets/screenshot-theme.png" alt="Theme" class="w-full h-full object-cover" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+          <div class="w-full h-full flex flex-col items-center justify-center text-gray-300 dark:text-gray-600" style="display:none"><i class="fas fa-palette text-3xl mb-2 opacity-30"></i><span class="text-xs" data-fr="Capture à venir" data-en="Coming soon">Capture à venir</span></div>
+        </div>
+      </div>
+      <div class="order-1 lg:order-2">
+        <div class="w-14 h-14 rounded-2xl bg-brand-100 dark:bg-brand-500/10 flex items-center justify-center mb-6"><i class="fas fa-palette text-brand-500 dark:text-brand-400 text-xl"></i></div>
+        <h3 class="text-2xl font-bold text-gray-900 dark:text-white mb-3" data-fr="Thème clair & sombre" data-en="Light & dark theme">Thème clair & sombre</h3>
+        <p class="text-gray-500 dark:text-gray-400 leading-relaxed mb-4" data-fr="Design glassmorphism premium avec deux thèmes. Switch instantané depuis le menu." data-en="Premium glassmorphism design with two themes. Instant switch from the menu.">Design glassmorphism premium avec deux thèmes. Switch instantané depuis le menu.</p>
+        <ul class="space-y-2">
+          <li class="flex items-center gap-2 text-sm text-gray-500 dark:text-gray-400"><i class="fas fa-check text-brand-500 dark:text-brand-400 text-xs"></i> <span data-fr="Glassmorphism premium" data-en="Premium glassmorphism">Glassmorphism premium</span></li>
+          <li class="flex items-center gap-2 text-sm text-gray-500 dark:text-gray-400"><i class="fas fa-check text-brand-500 dark:text-brand-400 text-xs"></i> <span data-fr="Switch instantané" data-en="Instant switch">Switch instantané</span></li>
+          <li class="flex items-center gap-2 text-sm text-gray-500 dark:text-gray-400"><i class="fas fa-check text-brand-500 dark:text-brand-400 text-xs"></i> <span data-fr="Préférence sauvegardée" data-en="Preference saved">Préférence sauvegardée</span></li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Feature 5: Bilingual -->
+    <div class="grid lg:grid-cols-2 gap-12 items-center mb-24">
+      <div>
+        <div class="w-14 h-14 rounded-2xl bg-brand-100 dark:bg-brand-500/10 flex items-center justify-center mb-6"><i class="fas fa-language text-brand-500 dark:text-brand-400 text-xl"></i></div>
+        <h3 class="text-2xl font-bold text-gray-900 dark:text-white mb-3" data-fr="Bilingue FR/EN" data-en="Bilingual FR/EN">Bilingue FR/EN</h3>
+        <p class="text-gray-500 dark:text-gray-400 leading-relaxed mb-4" data-fr="Interface disponible en français et en anglais. Changement en un clic depuis le menu." data-en="Interface available in French and English. Switch with one click from the menu.">Interface disponible en français et en anglais. Changement en un clic depuis le menu.</p>
+        <ul class="space-y-2">
+          <li class="flex items-center gap-2 text-sm text-gray-500 dark:text-gray-400"><i class="fas fa-check text-brand-500 dark:text-brand-400 text-xs"></i> <span data-fr="Traduction complète" data-en="Full translation">Traduction complète</span></li>
+          <li class="flex items-center gap-2 text-sm text-gray-500 dark:text-gray-400"><i class="fas fa-check text-brand-500 dark:text-brand-400 text-xs"></i> <span data-fr="Sauvegarde automatique" data-en="Auto save">Sauvegarde automatique</span></li>
+        </ul>
+      </div>
+      <div class="rounded-2xl bg-gray-100 dark:bg-white/[0.02] border border-gray-200 dark:border-white/10 p-2">
+        <div class="rounded-xl bg-gray-50 dark:bg-[#0f0f1a] overflow-hidden" style="aspect-ratio:16/10">
+          <img src="assets/screenshot-i18n.png" alt="Language" class="w-full h-full object-cover" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+          <div class="w-full h-full flex flex-col items-center justify-center text-gray-300 dark:text-gray-600" style="display:none"><i class="fas fa-language text-3xl mb-2 opacity-30"></i><span class="text-xs" data-fr="Capture à venir" data-en="Coming soon">Capture à venir</span></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Feature 6: Custom folder -->
+    <div class="grid lg:grid-cols-2 gap-12 items-center">
+      <div class="order-2 lg:order-1 rounded-2xl bg-gray-100 dark:bg-white/[0.02] border border-gray-200 dark:border-white/10 p-2">
+        <div class="rounded-xl bg-gray-50 dark:bg-[#0f0f1a] overflow-hidden" style="aspect-ratio:16/10">
+          <img src="assets/screenshot-folder.png" alt="Folder" class="w-full h-full object-cover" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+          <div class="w-full h-full flex flex-col items-center justify-center text-gray-300 dark:text-gray-600" style="display:none"><i class="fas fa-folder-open text-3xl mb-2 opacity-30"></i><span class="text-xs" data-fr="Capture à venir" data-en="Coming soon">Capture à venir</span></div>
+        </div>
+      </div>
+      <div class="order-1 lg:order-2">
+        <div class="w-14 h-14 rounded-2xl bg-brand-100 dark:bg-brand-500/10 flex items-center justify-center mb-6"><i class="fas fa-folder-open text-brand-500 dark:text-brand-400 text-xl"></i></div>
+        <h3 class="text-2xl font-bold text-gray-900 dark:text-white mb-3" data-fr="Dossier personnalisé" data-en="Custom folder">Dossier personnalisé</h3>
+        <p class="text-gray-500 dark:text-gray-400 leading-relaxed" data-fr="Choisissez où sauvegarder vos téléchargements avec le sélecteur de dossier natif." data-en="Choose where to save your downloads with the native folder picker.">Choisissez où sauvegarder vos téléchargements avec le sélecteur de dossier natif.</p>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<footer id="site-footer" class="border-t border-gray-100 dark:border-white/5"></footer>
+<script src="shared.js"></script>
+</body>
+</html>

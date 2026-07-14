@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="fr" class="dark scroll-smooth">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>À propos — YT Downloader</title>
+<link rel="icon" type="image/svg+xml" href="assets/logo.svg">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+<script src="https://cdn.tailwindcss.com"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<script>
+tailwind.config = { darkMode:'class', theme:{ extend:{ fontFamily:{ sans:['Inter','system-ui','sans-serif'] }, colors:{ brand:{50:'#eef2ff',100:'#e0e7ff',200:'#c7d2fe',300:'#a5b4fc',400:'#818cf8',500:'#6366f1',600:'#4f46e5'} } } } }
+</script>
+</head>
+<body class="bg-white dark:bg-[#0a0a14] text-gray-900 dark:text-white font-sans antialiased transition-colors">
+<nav id="site-nav"></nav>
+
+<section class="pt-32 pb-24">
+  <div class="max-w-4xl mx-auto px-4">
+    <div class="text-center mb-16">
+      <h1 class="text-4xl sm:text-5xl font-black text-gray-900 dark:text-white mb-4" data-fr="À propos" data-en="About">À propos</h1>
+      <p class="text-gray-500 dark:text-gray-400 text-lg max-w-xl mx-auto" data-fr="Un projet open source construit avec passion." data-en="An open source project built with passion.">Un projet open source construit avec passion.</p>
+    </div>
+
+    <!-- Tech Stack -->
+    <div class="mb-16">
+      <h2 class="text-xl font-bold text-gray-900 dark:text-white mb-6 text-center" data-fr="Technologies" data-en="Technologies">Technologies</h2>
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+        <div class="p-5 rounded-2xl bg-gray-50 dark:bg-white/[0.02] border border-gray-100 dark:border-white/5 text-center hover:border-brand-300 dark:hover:border-brand-500/30 transition-all">
+          <div class="text-brand-500 dark:text-brand-400 font-bold mb-1">Tauri 2</div>
+          <div class="text-xs text-gray-400" data-fr="Framework bureau" data-en="Desktop framework">Framework bureau</div>
+        </div>
+        <div class="p-5 rounded-2xl bg-gray-50 dark:bg-white/[0.02] border border-gray-100 dark:border-white/5 text-center hover:border-brand-300 dark:hover:border-brand-500/30 transition-all">
+          <div class="text-brand-500 dark:text-brand-400 font-bold mb-1">Rust</div>
+          <div class="text-xs text-gray-400" data-fr="Backend" data-en="Backend">Backend</div>
+        </div>
+        <div class="p-5 rounded-2xl bg-gray-50 dark:bg-white/[0.02] border border-gray-100 dark:border-white/5 text-center hover:border-brand-300 dark:hover:border-brand-500/30 transition-all">
+          <div class="text-brand-500 dark:text-brand-400 font-bold mb-1">yt-dlp</div>
+          <div class="text-xs text-gray-400" data-fr="Moteur YouTube" data-en="YouTube engine">Moteur YouTube</div>
+        </div>
+        <div class="p-5 rounded-2xl bg-gray-50 dark:bg-white/[0.02] border border-gray-100 dark:border-white/5 text-center hover:border-brand-300 dark:hover:border-brand-500/30 transition-all">
+          <div class="text-brand-500 dark:text-brand-400 font-bold mb-1">Tailwind CSS</div>
+          <div class="text-xs text-gray-400" data-fr="Landing page" data-en="Landing page">Landing page</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Author -->
+    <div class="mb-16">
+      <div class="max-w-lg mx-auto p-8 rounded-2xl bg-gray-50 dark:bg-white/[0.02] border border-gray-100 dark:border-white/5 text-center">
+        <div class="w-20 h-20 rounded-full bg-brand-100 dark:bg-brand-500/20 flex items-center justify-center mx-auto mb-4">
+          <i class="fas fa-user text-brand-500 dark:text-brand-400 text-2xl"></i>
+        </div>
+        <h3 class="text-xl font-bold text-gray-900 dark:text-white mb-1">Koffi Levis Akalete</h3>
+        <p class="text-sm text-gray-500 dark:text-gray-400 mb-4" data-fr="Développeur & Créateur" data-en="Developer & Creator">Développeur & Créateur</p>
+        <div class="flex items-center justify-center gap-4">
+          <a href="https://github.com/akaletekoffilevis" target="_blank" class="text-gray-400 hover:text-brand-500 dark:hover:text-brand-400 transition-colors"><i class="fab fa-github text-lg"></i></a>
+          <a href="mailto:koffilevis21@gmail.com" class="text-gray-400 hover:text-brand-500 dark:hover:text-brand-400 transition-colors"><i class="fas fa-envelope text-lg"></i></a>
+        </div>
+      </div>
+    </div>
+
+    <!-- License -->
+    <div class="max-w-lg mx-auto p-6 rounded-2xl bg-gray-50 dark:bg-white/[0.02] border border-gray-100 dark:border-white/5 text-center">
+      <div class="w-12 h-12 rounded-xl bg-green-100 dark:bg-green-500/10 flex items-center justify-center mx-auto mb-4">
+        <i class="fas fa-scale-balanced text-green-500 dark:text-green-400 text-lg"></i>
+      </div>
+      <h3 class="font-bold text-gray-900 dark:text-white mb-2">MIT License</h3>
+      <p class="text-sm text-gray-500 dark:text-gray-400" data-fr="Gratuit, libre, sans restriction." data-en="Free, open, no restrictions.">Gratuit, libre, sans restriction.</p>
+    </div>
+  </div>
+</section>
+
+<footer id="site-footer" class="border-t border-gray-100 dark:border-white/5"></footer>
+<script src="shared.js"></script>
+</body>
+</html>
