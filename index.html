@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>YouTube Downloader — Téléchargez vos vidéos préférées</title>
+<meta name="description" content="Application de bureau gratuite pour télécharger des vidéos YouTube en haute qualité. Simple, rapide et élégante.">
+<link rel="icon" type="image/svg+xml" href="assets/logo.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="nav">
+  <div class="nav-inner">
+    <a href="#" class="nav-logo">
+      <img src="assets/logo.svg" alt="Logo" width="36" height="36">
+      <span>YT Downloader</span>
+    </a>
+    <div class="nav-right">
+      <button id="lang-toggle" class="lang-toggle">EN</button>
+    </div>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-inner">
+    <div class="hero-badge">v0.1.0 — Open Source</div>
+    <h1 class="hero-title" data-fr="Téléchargez vos vidéos YouTube" data-en="Download your YouTube videos">Téléchargez vos vidéos YouTube</h1>
+    <p class="hero-sub" data-fr="Application de bureau rapide, élégante et totalement gratuite. Construite avec Tauri 2 pour des performances optimales." data-en="A fast, elegant and completely free desktop app. Built with Tauri 2 for optimal performance.">Application de bureau rapide, élégante et totalement gratuite. Construite avec Tauri 2 pour des performances optimales.</p>
+    <div class="hero-actions">
+      <a href="https://github.com/akaletekoffilevis/youtube-downloader" class="btn btn-primary" target="_blank">
+        <i class="fab fa-github"></i>
+        <span data-fr="Voir sur GitHub" data-en="View on GitHub">Voir sur GitHub</span>
+      </a>
+      <a href="#features" class="btn btn-ghost" data-fr="En savoir plus" data-en="Learn more">En savoir plus</a>
+    </div>
+    <div class="hero-platforms">
+      <span><i class="fab fa-windows"></i> Windows</span>
+      <span><i class="fab fa-linux"></i> Linux</span>
+      <span><i class="fab fa-apple"></i> macOS</span>
+    </div>
+  </div>
+</section>
+
+<!-- FEATURES -->
+<section id="features" class="features">
+  <div class="section-inner">
+    <h2 class="section-title" data-fr="Fonctionnalités" data-en="Features">Fonctionnalités</h2>
+    <p class="section-sub" data-fr="Tout ce dont vous avez besoin pour télécharger vos vidéos préférées" data-en="Everything you need to download your favorite videos">Tout ce dont vous avez besoin pour télécharger vos vidéos préférées</p>
+    <div class="features-grid">
+      <div class="feature-card">
+        <div class="feature-icon"><i class="fas fa-search"></i></div>
+        <h3 data-fr="Recherche rapide" data-en="Fast search">Recherche rapide</h3>
+        <p data-fr="Trouvez n'importe quelle vidéo avec une recherche YouTube intégrée. Jusqu'à 100 résultats en un instant." data-en="Find any video with built-in YouTube search. Up to 100 results instantly.">Trouvez n'importe quelle vidéo avec une recherche YouTube intégrée. Jusqu'à 100 résultats en un instant.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon"><i class="fas fa-layer-group"></i></div>
+        <h3 data-fr="File d'attente intelligente" data-en="Smart queue">File d'attente intelligente</h3>
+        <p data-fr="1 à 5 téléchargements simultanés. Pause, reprise et annulation de chaque téléchargement individuellement." data-en="1 to 5 simultaneous downloads. Pause, resume and cancel each download individually.">1 à 5 téléchargements simultanés. Pause, reprise et annulation de chaque téléchargement individuellement.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon"><i class="fas fa-sliders"></i></div>
+        <h3 data-fr="Choix de qualité" data-en="Quality picker">Choix de qualité</h3>
+        <p data-fr="1080p, 720p, 480p, 360p ou Audio MP3. Vous choisissez la qualité qui vous convient." data-en="1080p, 720p, 480p, 360p or Audio MP3. You choose the quality that suits you.">1080p, 720p, 480p, 360p ou Audio MP3. Vous choisissez la qualité qui vous convient.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon"><i class="fas fa-palette"></i></div>
+        <h3 data-fr="Thème clair & sombre" data-en="Light & dark theme">Thème clair & sombre</h3>
+        <p data-fr="Design glassmorphism premium avec deux thèmes. Passage instantané d'un thème à l'autre." data-en="Premium glassmorphism design with two themes. Instant switch between themes.">Design glassmorphism premium avec deux thèmes. Passage instantané d'un thème à l'autre.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon"><i class="fas fa-language"></i></div>
+        <h3 data-fr="Bilingue FR/EN" data-en="Bilingual FR/EN">Bilingue FR/EN</h3>
+        <p data-fr="Interface disponible en français et en anglais. Changez de langue en un clic." data-en="Interface available in French and English. Switch languages with one click.">Interface disponible en français et en anglais. Changez de langue en un clic.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon"><i class="fas fa-folder-open"></i></div>
+        <h3 data-fr="Dossier personnalisé" data-en="Custom folder">Dossier personnalisé</h3>
+        <p data-fr="Choisissez où sauvegarder vos téléchargements. Sélecteur de dossier natif intégré." data-en="Choose where to save your downloads. Built-in native folder picker.">Choisissez où sauvegarder vos téléchargements. Sélecteur de dossier natif intégré.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TECH STACK -->
+<section class="tech">
+  <div class="section-inner">
+    <h2 class="section-title" data-fr="Technologies utilisées" data-en="Tech stack">Technologies utilisées</h2>
+    <div class="tech-grid">
+      <div class="tech-item">
+        <div class="tech-name">Tauri 2</div>
+        <div class="tech-desc" data-fr="Framework de bureau Rust" data-en="Rust desktop framework">Framework de bureau Rust</div>
+      </div>
+      <div class="tech-item">
+        <div class="tech-name">Rust</div>
+        <div class="tech-desc" data-fr="Backend performant et sûr" data-en="Fast and safe backend">Backend performant et sûr</div>
+      </div>
+      <div class="tech-item">
+        <div class="tech-name">yt-dlp</div>
+        <div class="tech-desc" data-fr="Extraction YouTube" data-en="YouTube extraction">Extraction YouTube</div>
+      </div>
+      <div class="tech-item">
+        <div class="tech-name">HTML/CSS/JS</div>
+        <div class="tech-desc" data-fr="Frontend vanilla" data-en="Vanilla frontend">Frontend vanilla</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section class="testimonials">
+  <div class="section-inner">
+    <h2 class="section-title" data-fr="Ce qu'en disent les utilisateurs" data-en="What users say">Ce qu'en disent les utilisateurs</h2>
+    <p class="section-sub" data-fr="Ajoutez vos témoignages en ouvrant une issue sur GitHub" data-en="Add your testimonial by opening a GitHub issue">Ajoutez vos témoignages en ouvrant une issue sur GitHub</p>
+    <div class="testimonials-grid">
+      <div class="testimonial-card">
+        <div class="testimonial-text" data-fr="&laquo;&nbsp;Application super propre, le mode sombre est magnifique. Je l'utilise tous les jours.&nbsp;&raquo;" data-en="&laquo;&nbsp;Super clean app, the dark mode is beautiful. I use it every day.&nbsp;&raquo;">&laquo;&nbsp;Application super propre, le mode sombre est magnifique. Je l'utilise tous les jours.&nbsp;&raquo;</div>
+        <div class="testimonial-author">— Utilisateur Bêta</div>
+      </div>
+      <div class="testimonial-card">
+        <div class="testimonial-text" data-fr="&laquo;&nbsp;Enfin un télécharger YouTube rapide et sans pub. Le design est vraiment premium.&nbsp;&raquo;" data-en="&laquo;&nbsp;Finally a fast ad-free YouTube downloader. The design is really premium.&nbsp;&raquo;">&laquo;&nbsp;Enfin un télécharger YouTube rapide et sans pub. Le design est vraiment premium.&nbsp;&raquo;</div>
+        <div class="testimonial-author">— Utilisateur Bêta</div>
+      </div>
+      <div class="testimonial-card">
+        <div class="testimonial-text" data-fr="&laquo;&nbsp;La file d'attente avec les téléchargements simultanés c'est génial. Très pratique pour les playlists.&nbsp;&raquo;" data-en="&laquo;&nbsp;The queue with simultaneous downloads is great. Very practical for playlists.&nbsp;&raquo;">&laquo;&nbsp;La file d'attente avec les téléchargements simultanés c'est génial. Très pratique pour les playlists.&nbsp;&raquo;</div>
+        <div class="testimonial-author">— Utilisateur Bêta</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="faq">
+  <div class="section-inner">
+    <h2 class="section-title" data-fr="Questions fréquentes" data-en="FAQ">Questions fréquentes</h2>
+    <div class="faq-list">
+      <details class="faq-item">
+        <summary data-fr="L'application est-elle gratuite ?" data-en="Is the app free?">L'application est-elle gratuite ?</summary>
+        <p data-fr="Oui, l'application est 100% gratuite et open source sous licence MIT. Vous pouvez l'utiliser, la modifier et la redistribuer librement." data-en="Yes, the app is 100% free and open source under MIT license. You can use, modify and redistribute it freely.">Oui, l'application est 100% gratuite et open source sous licence MIT. Vous pouvez l'utiliser, la modifier et la redistribuer librement.</p>
+      </details>
+      <details class="faq-item">
+        <summary data-fr="Quelles sont les prérequis ?" data-en="What are the prerequisites?">Quelles sont les prérequis ?</summary>
+        <p data-fr="yt-dlp doit être installé sur votre système. L'application gère le reste automatiquement." data-en="yt-dlp must be installed on your system. The app handles the rest automatically.">yt-dlp doit être installé sur votre système. L'application gère le reste automatiquement.</p>
+      </details>
+      <details class="faq-item">
+        <summary data-fr="Supporte-t-elle les playlists ?" data-en="Does it support playlists?">Supporte-t-elle les playlists ?</summary>
+        <p data-fr="Oui, vous pouvez coller une URL de playlist YouTube et l'application affichera toutes les vidéos." data-en="Yes, you can paste a YouTube playlist URL and the app will display all videos.">Oui, vous pouvez coller une URL de playlist YouTube et l'application affichera toutes les vidéos.</p>
+      </details>
+      <details class="faq-item">
+        <summary data-fr="Les téléchargements sont-ils illimités ?" data-en="Are downloads unlimited?">Les téléchargements sont-ils illimités ?</summary>
+        <p data-fr="Oui, il n'y a aucune limite. Vous pouvez télécharger autant de vidéos que vous le souhaitez." data-en="Yes, there are no limits. You can download as many videos as you want.">Oui, il n'y a aucune limite. Vous pouvez télécharger autant de vidéos que vous le souhaitez.</p>
+      </details>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta">
+  <div class="section-inner">
+    <h2 data-fr="Prêt à télécharger ?" data-en="Ready to download?">Prêt à télécharger ?</h2>
+    <p data-fr="L'application est disponible gratuitement sur GitHub." data-en="The app is available for free on GitHub.">L'application est disponible gratuitement sur GitHub.</p>
+    <a href="https://github.com/akaletekoffilevis/youtube-downloader" class="btn btn-primary btn-lg" target="_blank">
+      <i class="fab fa-github"></i>
+      <span data-fr="Télécharger sur GitHub" data-en="Download on GitHub">Télécharger sur GitHub</span>
+    </a>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="footer-inner">
+    <div class="footer-left">
+      <img src="assets/logo.svg" alt="Logo" width="24" height="24">
+      <span>YT Downloader</span>
+    </div>
+    <div class="footer-center">
+      <span>&copy; 2026 Koffi Levis Akalete. MIT License.</span>
+    </div>
+    <div class="footer-right">
+      <a href="https://github.com/akaletekoffilevis/youtube-downloader" target="_blank"><i class="fab fa-github"></i> GitHub</a>
+      <a href="mailto:koffilevis21@gmail.com"><i class="fas fa-envelope"></i> Contact</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+const toggle = document.getElementById('lang-toggle');
+let lang = localStorage.getItem('yt-landing-lang') || 'fr';
+function applyLang() {
+  document.querySelectorAll('[data-fr][data-en]').forEach(el => {
+    el.textContent = el.getAttribute('data-' + lang);
+  });
+  toggle.textContent = lang === 'fr' ? 'EN' : 'FR';
+  document.documentElement.lang = lang;
+}
+toggle.addEventListener('click', () => {
+  lang = lang === 'fr' ? 'en' : 'fr';
+  localStorage.setItem('yt-landing-lang', lang);
+  applyLang();
+});
+applyLang();
+</script>
+</body>
+</html>
