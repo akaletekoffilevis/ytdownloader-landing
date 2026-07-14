@@ -68,6 +68,7 @@ function getCurrentPage() {
   if (path.endsWith('download.html')) return 'download';
   if (path.endsWith('about.html')) return 'about';
   if (path.endsWith('changelog.html')) return 'changelog';
+  if (path.endsWith('contact.html')) return 'contact';
   return 'home';
 }
 
@@ -79,6 +80,7 @@ function renderNav() {
     { id:'download', href:'download.html', fr:'Télécharger', en:'Download' },
     { id:'changelog', href:'changelog.html', fr:'Versions', en:'Changelog' },
     { id:'about', href:'about.html', fr:'À propos', en:'About' },
+    { id:'contact', href:'contact.html', fr:'Contact', en:'Contact' },
   ];
   const navLinks = links.map(l =>
     `<a href="${l.href}" class="px-3 py-2 text-sm font-medium rounded-lg transition-colors ${l.id===page?'text-indigo-400 dark:text-indigo-400 text-indigo-600':'text-gray-500 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white'}" data-fr="${l.fr}" data-en="${l.en}">${l.fr}</a>`
