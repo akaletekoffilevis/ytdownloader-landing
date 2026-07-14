@@ -13,14 +13,23 @@
 <body>
 
 <!-- NAV -->
-<nav class="nav">
+<nav class="nav" id="nav">
   <div class="nav-inner">
     <a href="#" class="nav-logo">
       <img src="assets/logo.svg" alt="Logo" width="36" height="36">
       <span>YT Downloader</span>
     </a>
+    <div class="nav-links" id="nav-links">
+      <a href="#features" data-fr="Fonctionnalités" data-en="Features">Fonctionnalités</a>
+      <a href="#how" data-fr="Comment ça marche" data-en="How it works">Comment ça marche</a>
+      <a href="#download" data-fr="Télécharger" data-en="Download">Télécharger</a>
+      <a href="#faq" data-fr="FAQ" data-en="FAQ">FAQ</a>
+    </div>
     <div class="nav-right">
       <button id="lang-toggle" class="lang-toggle">EN</button>
+      <button id="hamburger" class="hamburger" aria-label="Menu">
+        <span></span><span></span><span></span>
+      </button>
     </div>
   </div>
 </nav>
@@ -87,6 +96,32 @@
   </div>
 </section>
 
+<!-- HOW IT WORKS -->
+<section id="how" class="how">
+  <div class="section-inner">
+    <h2 class="section-title" data-fr="Comment ça marche" data-en="How it works">Comment ça marche</h2>
+    <p class="section-sub" data-fr="Trois étapes simples pour commencer" data-en="Three simple steps to get started">Trois étapes simples pour commencer</p>
+    <div class="how-grid">
+      <div class="how-step">
+        <div class="how-num">1</div>
+        <h3 data-fr="Installez yt-dlp" data-en="Install yt-dlp">Installez yt-dlp</h3>
+        <p data-fr="Le moteur d'extraction. Installez-le une seule fois via votre gestionnaire de paquets." data-en="The extraction engine. Install it once via your package manager.">Le moteur d'extraction. Installez-le une seule fois via votre gestionnaire de paquets.</p>
+        <code>pip install yt-dlp</code>
+      </div>
+      <div class="how-step">
+        <div class="how-num">2</div>
+        <h3 data-fr="Collez l'URL" data-en="Paste the URL">Collez l'URL</h3>
+        <p data-fr="Cherchez ou collez directement un lien YouTube. L'application récupère les formats disponibles." data-en="Search or paste a YouTube link directly. The app fetches available formats.">Cherchez ou collez directement un lien YouTube. L'application récupère les formats disponibles.</p>
+      </div>
+      <div class="how-step">
+        <div class="how-num">3</div>
+        <h3 data-fr="Téléchargez" data-en="Download">Téléchargez</h3>
+        <p data-fr="Choisissez la qualité et lancez le téléchargement. C'est tout." data-en="Choose the quality and start downloading. That's it.">Choisissez la qualité et lancez le téléchargement. C'est tout.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
 <!-- TECH STACK -->
 <section class="tech">
   <div class="section-inner">
@@ -135,7 +170,7 @@
 </section>
 
 <!-- FAQ -->
-<section class="faq">
+<section id="faq" class="faq">
   <div class="section-inner">
     <h2 class="section-title" data-fr="Questions fréquentes" data-en="FAQ">Questions fréquentes</h2>
     <div class="faq-list">
@@ -155,6 +190,10 @@
         <summary data-fr="Les téléchargements sont-ils illimités ?" data-en="Are downloads unlimited?">Les téléchargements sont-ils illimités ?</summary>
         <p data-fr="Oui, il n'y a aucune limite. Vous pouvez télécharger autant de vidéos que vous le souhaitez." data-en="Yes, there are no limits. You can download as many videos as you want.">Oui, il n'y a aucune limite. Vous pouvez télécharger autant de vidéos que vous le souhaitez.</p>
       </details>
+      <details class="faq-item">
+        <summary data-fr="Fonctionne-t-il sur macOS Apple Silicon ?" data-en="Does it work on Apple Silicon?">Fonctionne-t-il sur macOS Apple Silicon ?</summary>
+        <p data-fr="Oui, une version native Apple Silicon (M1/M2/M3) est disponible. Une version Intel est aussi incluse." data-en="Yes, a native Apple Silicon (M1/M2/M3) build is available. An Intel build is also included.">Oui, une version native Apple Silicon (M1/M2/M3) est disponible. Une version Intel est aussi incluse.</p>
+      </details>
     </div>
   </div>
 </section>
@@ -163,34 +202,51 @@
 <section class="download" id="download">
   <div class="section-inner">
     <h2 data-fr="Télécharger" data-en="Download">Télécharger</h2>
-    <p class="section-sub" data-fr="Choisissez votre plateforme" data-en="Choose your platform">Choisissez votre plateforme</p>
-    <div class="download-grid">
-      <a href="https://github.com/akaletekoffilevis/youtube-downloader/releases/latest" class="download-card" target="_blank">
-        <div class="download-icon"><i class="fab fa-windows"></i></div>
-        <div class="download-info">
+    <p class="section-sub" data-fr="Choisissez votre plateforme et votre format" data-en="Choose your platform and format">Choisissez votre plateforme et votre format</p>
+
+    <!-- Windows -->
+    <div class="dl-platform">
+      <div class="dl-platform-header">
+        <i class="fab fa-windows dl-platform-icon"></i>
+        <div>
           <h3>Windows</h3>
-          <span>.exe · .msi</span>
+          <span class="dl-platform-sub" data-fr="Installateur" data-en="Installer">Installateur</span>
         </div>
-        <i class="fas fa-arrow-right download-arrow"></i>
-      </a>
-      <a href="https://github.com/akaletekoffilevis/youtube-downloader/releases/latest" class="download-card" target="_blank">
-        <div class="download-icon"><i class="fab fa-linux"></i></div>
-        <div class="download-info">
-          <h3>Linux</h3>
-          <span>.deb · .AppImage</span>
-        </div>
-        <i class="fas fa-arrow-right download-arrow"></i>
-      </a>
-      <a href="https://github.com/akaletekoffilevis/youtube-downloader/releases/latest" class="download-card" target="_blank">
-        <div class="download-icon"><i class="fab fa-apple"></i></div>
-        <div class="download-info">
-          <h3>macOS</h3>
-          <span>.dmg</span>
-        </div>
-        <i class="fas fa-arrow-right download-arrow"></i>
-      </a>
+      </div>
+      <div class="dl-files" id="dl-windows">
+        <div class="dl-loading" data-fr="Chargement des liens..." data-en="Loading links...">Chargement des liens...</div>
+      </div>
     </div>
-    <p class="download-note" data-fr="Ou clonez le repo et build你自己 — voir le README" data-en="Or clone the repo and build it yourself — see the README">Ou clonez le repo et build vous-même — voir le <a href="https://github.com/akaletekoffilevis/youtube-downloader" target="_blank">README</a></p>
+
+    <!-- Linux -->
+    <div class="dl-platform">
+      <div class="dl-platform-header">
+        <i class="fab fa-linux dl-platform-icon"></i>
+        <div>
+          <h3>Linux</h3>
+          <span class="dl-platform-sub" data-fr="Paquets natifs" data-en="Native packages">Paquets natifs</span>
+        </div>
+      </div>
+      <div class="dl-files" id="dl-linux">
+        <div class="dl-loading" data-fr="Chargement des liens..." data-en="Loading links...">Chargement des liens...</div>
+      </div>
+    </div>
+
+    <!-- macOS -->
+    <div class="dl-platform">
+      <div class="dl-platform-header">
+        <i class="fab fa-apple dl-platform-icon"></i>
+        <div>
+          <h3>macOS</h3>
+          <span class="dl-platform-sub" data-fr="Application" data-en="Application">Application</span>
+        </div>
+      </div>
+      <div class="dl-files" id="dl-macos">
+        <div class="dl-loading" data-fr="Chargement des liens..." data-en="Loading links...">Chargement des liens...</div>
+      </div>
+    </div>
+
+    <p class="download-note" data-fr="Ou clonez le repo et buildez-le vous-même — voir le README" data-en="Or clone the repo and build it yourself — see the README">Ou clonez le repo et buildez-le vous-même — voir le <a href="https://github.com/akaletekoffilevis/youtube-downloader" target="_blank">README</a></p>
   </div>
 </section>
 
@@ -217,28 +273,15 @@
       <span>&copy; 2026 Koffi Levis Akalete. MIT License.</span>
     </div>
     <div class="footer-right">
+      <a href="#features" data-fr="Fonctionnalités" data-en="Features">Fonctionnalités</a>
+      <a href="#download" data-fr="Télécharger" data-en="Download">Télécharger</a>
+      <a href="#faq" data-fr="FAQ" data-en="FAQ">FAQ</a>
       <a href="https://github.com/akaletekoffilevis/youtube-downloader" target="_blank"><i class="fab fa-github"></i> GitHub</a>
       <a href="mailto:koffilevis21@gmail.com"><i class="fas fa-envelope"></i> Contact</a>
     </div>
   </div>
 </footer>
 
-<script>
-const toggle = document.getElementById('lang-toggle');
-let lang = localStorage.getItem('yt-landing-lang') || 'fr';
-function applyLang() {
-  document.querySelectorAll('[data-fr][data-en]').forEach(el => {
-    el.textContent = el.getAttribute('data-' + lang);
-  });
-  toggle.textContent = lang === 'fr' ? 'EN' : 'FR';
-  document.documentElement.lang = lang;
-}
-toggle.addEventListener('click', () => {
-  lang = lang === 'fr' ? 'en' : 'fr';
-  localStorage.setItem('yt-landing-lang', lang);
-  applyLang();
-});
-applyLang();
-</script>
+<script src="app.js"></script>
 </body>
 </html>
