@@ -34,6 +34,39 @@ tailwind.config = { darkMode:'class', theme:{ extend:{ fontFamily:{ sans:['Inter
       <!-- Timeline line -->
       <div class="absolute left-6 top-0 bottom-0 w-px bg-gray-200 dark:bg-white/10"></div>
 
+      <!-- v0.2.1 -->
+      <div class="relative mb-10 sm:mb-12 pl-12 sm:pl-16">
+        <div class="absolute left-4 top-1 w-5 h-5 rounded-full bg-brand-500 border-4 border-white dark:border-[#0a0a14]"></div>
+        <div class="p-6 rounded-2xl bg-gray-50 dark:bg-white/[0.02] border border-gray-200 dark:border-white/5">
+          <div class="flex items-center gap-3 mb-3">
+            <span class="px-3 py-1 rounded-full bg-brand-100 dark:bg-brand-500/10 text-brand-600 dark:text-brand-400 text-xs font-bold">v0.2.1</span>
+            <span class="text-sm text-gray-400">19 Juillet 2026</span>
+            <span class="px-2 py-0.5 rounded-full bg-green-100 dark:bg-green-500/10 text-green-600 dark:text-green-400 text-xs font-semibold" data-fr="Dernière version" data-en="Latest">Dernière version</span>
+          </div>
+          <h3 class="font-bold text-gray-900 dark:text-white mb-3" data-fr="Auto-update, multi-sélection, performances" data-en="Auto-update, multi-select, performance">Auto-update, multi-sélection, performances</h3>
+          <ul class="space-y-2 text-sm text-gray-600 dark:text-gray-400">
+            <li class="flex items-start gap-2"><i class="fas fa-plus text-green-500 dark:text-green-400 text-xs mt-1"></i> <span data-fr="Mise à jour automatique de l'application (Tauri updater)" data-en="Automatic app updates (Tauri updater)">Mise à jour automatique de l'application (Tauri updater)</span></li>
+            <li class="flex items-start gap-2"><i class="fas fa-plus text-green-500 dark:text-green-400 text-xs mt-1"></i> <span data-fr="Mise à jour automatique de yt-dlp au démarrage" data-en="Auto-update yt-dlp on startup">Mise à jour automatique de yt-dlp au démarrage</span></li>
+            <li class="flex items-start gap-2"><i class="fas fa-plus text-green-500 dark:text-green-400 text-xs mt-1"></i> <span data-fr="Mode sélection multiple : cochez et téléchargez en lot" data-en="Multi-select mode: check and batch download">Mode sélection multiple : cochez et téléchargez en lot</span></li>
+            <li class="flex items-start gap-2"><i class="fas fa-plus text-green-500 dark:text-green-400 text-xs mt-1"></i> <span data-fr="Barre de progression globale dans la file d'attente" data-en="Global progress bar in the download queue">Barre de progression globale dans la file d'attente</span></li>
+            <li class="flex items-start gap-2"><i class="fas fa-plus text-green-500 dark:text-green-400 text-xs mt-1"></i> <span data-fr="Affichage vitesse et ETA en temps réel" data-en="Real-time speed and ETA display">Affichage vitesse et ETA en temps réel</span></li>
+            <li class="flex items-start gap-2"><i class="fas fa-plus text-green-500 dark:text-green-400 text-xs mt-1"></i> <span data-fr="Limite de vitesse configurable dans les paramètres" data-en="Configurable speed limit in settings">Limite de vitesse configurable dans les paramètres</span></li>
+            <li class="flex items-start gap-2"><i class="fas fa-plus text-green-500 dark:text-green-400 text-xs mt-1"></i> <span data-fr="Format de téléchargement par défaut configuré" data-en="Default download format configured">Format de téléchargement par défaut configuré</span></li>
+            <li class="flex items-start gap-2"><i class="fas fa-plus text-green-500 dark:text-green-400 text-xs mt-1"></i> <span data-fr="Recherche dans l'historique" data-en="History search/filter">Recherche dans l'historique</span></li>
+            <li class="flex items-start gap-2"><i class="fas fa-plus text-green-500 dark:text-green-400 text-xs mt-1"></i> <span data-fr="Détection collage clipboard sur focus recherche" data-en="Clipboard paste detection on search focus">Détection collage clipboard sur focus recherche</span></li>
+            <li class="flex items-start gap-2"><i class="fas fa-plus text-green-500 dark:text-green-400 text-xs mt-1"></i> <span data-fr="Notifications desktop sur fin de téléchargement" data-en="Desktop notifications on download complete">Notifications desktop sur fin de téléchargement</span></li>
+            <li class="flex items-start gap-2"><i class="fas fa-plus text-green-500 dark:text-green-400 text-xs mt-1"></i> <span data-fr="Scripts d'installation rapides : PowerShell, Bash, CMD" data-en="Quick install scripts: PowerShell, Bash, CMD">Scripts d'installation rapides : PowerShell, Bash, CMD</span></li>
+            <li class="flex items-start gap-2"><i class="fas fa-plus text-green-500 dark:text-green-400 text-xs mt-1"></i> <span data-fr="Build 5 plateformes : Win x64/x86, Linux, macOS ARM/Intel" data-en="5-platform build: Win x64/x86, Linux, macOS ARM/Intel">Build 5 plateformes : Win x64/x86, Linux, macOS ARM/Intel</span></li>
+            <li class="flex items-start gap-2"><i class="fas fa-plus text-green-500 dark:text-green-400 text-xs mt-1"></i> <span data-fr="YouTube preview intégré via iframe" data-en="YouTube preview via iframe">YouTube preview intégré via iframe</span></li>
+            <li class="flex items-start gap-2"><i class="fas fa-bug text-orange-500 dark:text-orange-400 text-xs mt-1"></i> <span data-fr="Fix yt-dlp asset nommé correctement pour Windows" data-en="Fix yt-dlp asset naming for Windows">Fix yt-dlp asset nommé correctement pour Windows</span></li>
+            <li class="flex items-start gap-2"><i class="fas fa-bug text-orange-500 dark:text-orange-400 text-xs mt-1"></i> <span data-fr="Fix CSP pour allow YouTube iframes" data-en="Fix CSP to allow YouTube iframes">Fix CSP pour allow YouTube iframes</span></li>
+          </ul>
+          <div class="mt-4">
+            <a href="https://github.com/akaletekoffilevis/youtube-downloader/releases/tag/v0.2.1" target="_blank" class="text-xs text-brand-500 dark:text-brand-400 hover:text-brand-600 dark:hover:text-brand-300 font-semibold" data-fr="Voir sur GitHub" data-en="View on GitHub">Voir sur GitHub <i class="fas fa-external-link-alt ml-1"></i></a>
+          </div>
+        </div>
+      </div>
+
       <!-- v0.2.0 -->
       <div class="relative mb-10 sm:mb-12 pl-12 sm:pl-16">
         <div class="absolute left-4 top-1 w-5 h-5 rounded-full bg-brand-500 border-4 border-white dark:border-[#0a0a14]"></div>
@@ -41,7 +74,6 @@ tailwind.config = { darkMode:'class', theme:{ extend:{ fontFamily:{ sans:['Inter
           <div class="flex items-center gap-3 mb-3">
             <span class="px-3 py-1 rounded-full bg-brand-100 dark:bg-brand-500/10 text-brand-600 dark:text-brand-400 text-xs font-bold">v0.2.0</span>
             <span class="text-sm text-gray-400">14 Juillet 2026</span>
-            <span class="px-2 py-0.5 rounded-full bg-green-100 dark:bg-green-500/10 text-green-600 dark:text-green-400 text-xs font-semibold" data-fr="Dernière version" data-en="Latest">Dernière version</span>
           </div>
           <h3 class="font-bold text-gray-900 dark:text-white mb-3" data-fr="yt-dlp intégré + Refonte UI complète" data-en="yt-dlp bundled + Full UI redesign">yt-dlp intégré + Refonte UI complète</h3>
           <ul class="space-y-2 text-sm text-gray-600 dark:text-gray-400">
