@@ -3,6 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>À propos — YT Downloader</title>
 <meta name="description" content="À propos de YT Downloader — projet open source, MIT License.">
 <meta property="og:title" content="À propos — YT Downloader">
 <meta property="og:description" content="Un projet open source construit avec Tauri 2, Rust et yt-dlp.">
@@ -23,59 +24,172 @@ tailwind.config = { darkMode:'class', theme:{ extend:{ fontFamily:{ sans:['Inter
 <body class="bg-white dark:bg-[#0a0a14] text-gray-900 dark:text-white font-sans antialiased transition-colors">
 <nav id="site-nav"></nav>
 
+<!-- Hero -->
 <section class="pt-24 sm:pt-32 pb-16 sm:pb-24">
   <div class="max-w-4xl mx-auto px-4">
     <div class="text-center mb-12 sm:mb-16">
-      <h1 class="text-3xl sm:text-4xl lg:text-5xl font-black text-gray-900 dark:text-white mb-4" data-fr="À propos" data-en="About">À propos</h1>
-      <p class="text-gray-500 dark:text-gray-400 text-lg max-w-xl mx-auto" data-fr="Un projet open source construit avec passion." data-en="An open source project built with passion.">Un projet open source construit avec passion.</p>
+      <h1 class="text-3xl sm:text-4xl lg:text-5xl font-black text-gray-900 dark:text-white mb-4" data-fr="À propos de YT Downloader" data-en="About YT Downloader">À propos de YT Downloader</h1>
+      <p class="text-gray-500 dark:text-gray-400 text-lg max-w-2xl mx-auto leading-relaxed" data-fr="Un projet open source construit avec passion, pensé pour rester simple, rapide et respectueux de vos données." data-en="An open source project built with passion, designed to stay simple, fast, and respectful of your data.">Un projet open source construit avec passion, pensé pour rester simple, rapide et respectueux de vos données.</p>
+    </div>
+
+    <!-- Mission Cards -->
+    <div class="grid sm:grid-cols-2 gap-4 sm:gap-6 mb-16 sm:mb-20">
+      <div class="p-6 sm:p-8 rounded-2xl bg-gray-50 dark:bg-white/[0.02] border border-gray-100 dark:border-white/5 hover:border-brand-300 dark:hover:border-brand-500/30 transition-all">
+        <div class="w-12 h-12 rounded-2xl bg-brand-100 dark:bg-brand-500/10 flex items-center justify-center mb-5">
+          <i class="fas fa-heart text-brand-500 dark:text-brand-400 text-lg"></i>
+        </div>
+        <h3 class="text-lg font-bold text-gray-900 dark:text-white mb-2" data-fr="Notre mission" data-en="Our mission">Notre mission</h3>
+        <p class="text-sm text-gray-500 dark:text-gray-400 leading-relaxed" data-fr="Rendre le téléchargement vidéo accessible à tous. Aucune publicité, aucune donnée collectée, aucune inscription requise. YT Downloader est un outil pur, conçu pour fonctionner sans compromis." data-en="Make video downloading accessible to everyone. No ads, no data collected, no account required. YT Downloader is a pure tool, designed to work without compromise.">Rendre le téléchargement vidéo accessible à tous. Aucune publicité, aucune donnée collectée, aucune inscription requise. YT Downloader est un outil pur, conçu pour fonctionner sans compromis.</p>
+      </div>
+      <div class="p-6 sm:p-8 rounded-2xl bg-gray-50 dark:bg-white/[0.02] border border-gray-100 dark:border-white/5 hover:border-brand-300 dark:hover:border-brand-500/30 transition-all">
+        <div class="w-12 h-12 rounded-2xl bg-green-100 dark:bg-green-500/10 flex items-center justify-center mb-5">
+          <i class="fas fa-code-branch text-green-500 dark:text-green-400 text-lg"></i>
+        </div>
+        <h3 class="text-lg font-bold text-gray-900 dark:text-white mb-2" data-fr="Open source" data-en="Open source">Open source</h3>
+        <p class="text-sm text-gray-500 dark:text-gray-400 leading-relaxed" data-fr="Sous licence MIT, le code source est entièrement public. Chaque ligne est auditable, chaque contribution est la bienvenue. La transparence est au coeur du projet." data-en="Under MIT license, the source code is fully public. Every line is auditable, every contribution is welcome. Transparency is at the heart of the project.">Sous licence MIT, le code source est entièrement public. Chaque ligne est auditable, chaque contribution est la bienvenue. La transparence est au coeur du projet.</p>
+      </div>
+    </div>
+
+    <!-- Stats -->
+    <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 sm:gap-4 mb-16 sm:mb-20">
+      <div class="p-5 sm:p-6 rounded-2xl bg-gray-50 dark:bg-white/[0.02] border border-gray-100 dark:border-white/5 text-center hover:border-brand-300 dark:hover:border-brand-500/30 transition-all">
+        <div class="text-2xl sm:text-3xl font-black text-brand-500 dark:text-brand-400 mb-1">5</div>
+        <div class="text-xs sm:text-sm text-gray-500 dark:text-gray-400" data-fr="Plateformes" data-en="Platforms">Plateformes</div>
+      </div>
+      <div class="p-5 sm:p-6 rounded-2xl bg-gray-50 dark:bg-white/[0.02] border border-gray-100 dark:border-white/5 text-center hover:border-brand-300 dark:hover:border-brand-500/30 transition-all">
+        <div class="text-2xl sm:text-3xl font-black text-brand-500 dark:text-brand-400 mb-1">7</div>
+        <div class="text-xs sm:text-sm text-gray-500 dark:text-gray-400" data-fr="Formats" data-en="Formats">Formats</div>
+      </div>
+      <div class="p-5 sm:p-6 rounded-2xl bg-gray-50 dark:bg-white/[0.02] border border-gray-100 dark:border-white/5 text-center hover:border-brand-300 dark:hover:border-brand-500/30 transition-all">
+        <div class="text-2xl sm:text-3xl font-black text-brand-500 dark:text-brand-400 mb-1">~85</div>
+        <div class="text-xs sm:text-sm text-gray-500 dark:text-gray-400" data-fr="Traductions" data-en="Translations">Traductions</div>
+      </div>
+      <div class="p-5 sm:p-6 rounded-2xl bg-gray-50 dark:bg-white/[0.02] border border-gray-100 dark:border-white/5 text-center hover:border-brand-300 dark:hover:border-brand-500/30 transition-all">
+        <div class="text-2xl sm:text-3xl font-black text-brand-500 dark:text-brand-400 mb-1">0</div>
+        <div class="text-xs sm:text-sm text-gray-500 dark:text-gray-400" data-fr="Dépendances externes" data-en="External dependencies">Dépendances externes</div>
+      </div>
     </div>
 
     <!-- Tech Stack -->
-    <div class="mb-12 sm:mb-16">
-      <h2 class="text-lg sm:text-xl font-bold text-gray-900 dark:text-white mb-5 sm:mb-6 text-center" data-fr="Technologies" data-en="Technologies">Technologies</h2>
-      <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 sm:gap-4">
-        <div class="p-5 rounded-2xl bg-gray-50 dark:bg-white/[0.02] border border-gray-100 dark:border-white/5 text-center hover:border-brand-300 dark:hover:border-brand-500/30 transition-all">
-          <div class="text-brand-500 dark:text-brand-400 font-bold mb-1">Tauri 2</div>
-          <div class="text-xs text-gray-400" data-fr="Framework bureau" data-en="Desktop framework">Framework bureau</div>
+    <div class="mb-16 sm:mb-20">
+      <h2 class="text-lg sm:text-xl font-bold text-gray-900 dark:text-white mb-6 sm:mb-8 text-center" data-fr="Stack technique" data-en="Tech stack">Stack technique</h2>
+      <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-4">
+        <div class="p-5 rounded-2xl bg-gray-50 dark:bg-white/[0.02] border border-gray-100 dark:border-white/5 hover:border-brand-300 dark:hover:border-brand-500/30 transition-all">
+          <div class="flex items-center gap-3 mb-3">
+            <div class="w-10 h-10 rounded-xl bg-brand-100 dark:bg-brand-500/10 flex items-center justify-center flex-shrink-0"><i class="fas fa-bolt text-brand-500 dark:text-brand-400"></i></div>
+            <div class="font-bold text-gray-900 dark:text-white">Tauri 2</div>
+          </div>
+          <p class="text-xs text-gray-500 dark:text-gray-400 leading-relaxed" data-fr="Framework bureau léger et performant. Binaire minimal, interface native, sécurité par défaut." data-en="Lightweight and performant desktop framework. Minimal binary, native interface, security by default.">Framework bureau léger et performant. Binaire minimal, interface native, sécurité par défaut.</p>
         </div>
-        <div class="p-5 rounded-2xl bg-gray-50 dark:bg-white/[0.02] border border-gray-100 dark:border-white/5 text-center hover:border-brand-300 dark:hover:border-brand-500/30 transition-all">
-          <div class="text-brand-500 dark:text-brand-400 font-bold mb-1">Rust</div>
-          <div class="text-xs text-gray-400" data-fr="Backend" data-en="Backend">Backend</div>
+        <div class="p-5 rounded-2xl bg-gray-50 dark:bg-white/[0.02] border border-gray-100 dark:border-white/5 hover:border-brand-300 dark:hover:border-brand-500/30 transition-all">
+          <div class="flex items-center gap-3 mb-3">
+            <div class="w-10 h-10 rounded-xl bg-orange-100 dark:bg-orange-500/10 flex items-center justify-center flex-shrink-0"><i class="fas fa-cog text-orange-500 dark:text-orange-400"></i></div>
+            <div class="font-bold text-gray-900 dark:text-white">Rust</div>
+          </div>
+          <p class="text-xs text-gray-500 dark:text-gray-400 leading-relaxed" data-fr="Backend solide et sans garbage collector. Gestion mémoire garantie à la compilation, performances maximales." data-en="Solid backend with no garbage collector. Memory management guaranteed at compile time, maximum performance.">Backend solide et sans garbage collector. Gestion mémoire garantie à la compilation, performances maximales.</p>
         </div>
-        <div class="p-5 rounded-2xl bg-gray-50 dark:bg-white/[0.02] border border-gray-100 dark:border-white/5 text-center hover:border-brand-300 dark:hover:border-brand-500/30 transition-all">
-          <div class="text-brand-500 dark:text-brand-400 font-bold mb-1">yt-dlp</div>
-          <div class="text-xs text-gray-400" data-fr="Moteur YouTube" data-en="YouTube engine">Moteur YouTube</div>
+        <div class="p-5 rounded-2xl bg-gray-50 dark:bg-white/[0.02] border border-gray-100 dark:border-white/5 hover:border-brand-300 dark:hover:border-brand-500/30 transition-all">
+          <div class="flex items-center gap-3 mb-3">
+            <div class="w-10 h-10 rounded-xl bg-red-100 dark:bg-red-500/10 flex items-center justify-center flex-shrink-0"><i class="fab fa-youtube text-red-500 dark:text-red-400"></i></div>
+            <div class="font-bold text-gray-900 dark:text-white">yt-dlp</div>
+          </div>
+          <p class="text-xs text-gray-500 dark:text-gray-400 leading-relaxed" data-fr="Moteur de téléchargement mature et maintenu. Supporte des centaines de sites, formats et qualités." data-en="Mature and maintained download engine. Supports hundreds of sites, formats, and qualities.">Moteur de téléchargement mature et maintenu. Supporte des centaines de sites, formats et qualités.</p>
         </div>
-        <div class="p-5 rounded-2xl bg-gray-50 dark:bg-white/[0.02] border border-gray-100 dark:border-white/5 text-center hover:border-brand-300 dark:hover:border-brand-500/30 transition-all">
-          <div class="text-brand-500 dark:text-brand-400 font-bold mb-1">Tailwind CSS</div>
-          <div class="text-xs text-gray-400" data-fr="Landing page" data-en="Landing page">Landing page</div>
+        <div class="p-5 rounded-2xl bg-gray-50 dark:bg-white/[0.02] border border-gray-100 dark:border-white/5 hover:border-brand-300 dark:hover:border-brand-500/30 transition-all">
+          <div class="flex items-center gap-3 mb-3">
+            <div class="w-10 h-10 rounded-xl bg-yellow-100 dark:bg-yellow-500/10 flex items-center justify-center flex-shrink-0"><i class="fab fa-html5 text-yellow-500 dark:text-yellow-400"></i></div>
+            <div class="font-bold text-gray-900 dark:text-white">HTML / CSS / JS</div>
+          </div>
+          <p class="text-xs text-gray-500 dark:text-gray-400 leading-relaxed" data-fr="Interface web classique. Pas de framework JS lourd, réactivité vanilla, chargement instantané." data-en="Classic web interface. No heavy JS framework, vanilla reactivity, instant loading.">Interface web classique. Pas de framework JS lourd, réactivité vanilla, chargement instantané.</p>
+        </div>
+        <div class="p-5 rounded-2xl bg-gray-50 dark:bg-white/[0.02] border border-gray-100 dark:border-white/5 hover:border-brand-300 dark:hover:border-brand-500/30 transition-all">
+          <div class="flex items-center gap-3 mb-3">
+            <div class="w-10 h-10 rounded-xl bg-gray-100 dark:bg-white/10 flex items-center justify-center flex-shrink-0"><i class="fab fa-github text-gray-700 dark:text-gray-300"></i></div>
+            <div class="font-bold text-gray-900 dark:text-white">GitHub Actions</div>
+          </div>
+          <p class="text-xs text-gray-500 dark:text-gray-400 leading-relaxed" data-fr="CI/CD automatisé. Build multi-plateforme, signalement automatique des releases, tests continus." data-en="Automated CI/CD. Multi-platform builds, automatic release publishing, continuous testing.">CI/CD automatisé. Build multi-plateforme, signalement automatique des releases, tests continus.</p>
+        </div>
+        <div class="p-5 rounded-2xl bg-gray-50 dark:bg-white/[0.02] border border-gray-100 dark:border-white/5 hover:border-brand-300 dark:hover:border-brand-500/30 transition-all">
+          <div class="flex items-center gap-3 mb-3">
+            <div class="w-10 h-10 rounded-xl bg-cyan-100 dark:bg-cyan-500/10 flex items-center justify-center flex-shrink-0"><i class="fas fa-wind text-cyan-500 dark:text-cyan-400"></i></div>
+            <div class="font-bold text-gray-900 dark:text-white">Tailwind CSS</div>
+          </div>
+          <p class="text-xs text-gray-500 dark:text-gray-400 leading-relaxed" data-fr="Design utility-first. Composants cohérents, dark mode natif, responsive sans effort." data-en="Utility-first design. Cohesive components, native dark mode, effortless responsive layout.">Design utility-first. Composants cohérents, dark mode natif, responsive sans effort.</p>
         </div>
       </div>
     </div>
 
     <!-- Author -->
-    <div class="mb-12 sm:mb-16">
+    <div class="mb-16 sm:mb-20">
       <div class="max-w-lg mx-auto p-6 sm:p-8 rounded-2xl bg-gray-50 dark:bg-white/[0.02] border border-gray-100 dark:border-white/5 text-center">
         <div class="w-16 h-16 sm:w-20 sm:h-20 rounded-full bg-brand-100 dark:bg-brand-500/20 flex items-center justify-center mx-auto mb-4">
-          <i class="fas fa-user text-brand-500 dark:text-brand-400 text-xl sm:text-2xl"></i>
+          <span class="text-brand-500 dark:text-brand-400 font-black text-xl sm:text-2xl">KL</span>
         </div>
         <h3 class="text-xl font-bold text-gray-900 dark:text-white mb-1">Koffi Levis Akalete</h3>
-        <p class="text-sm text-gray-500 dark:text-gray-400 mb-4" data-fr="Développeur & Créateur" data-en="Developer & Creator">Développeur & Créateur</p>
+        <p class="text-sm text-gray-500 dark:text-gray-400 mb-4" data-fr="Développeur Full-Stack & Créateur de YT Downloader" data-en="Full-Stack Developer & Creator of YT Downloader">Développeur Full-Stack & Créateur de YT Downloader</p>
+        <p class="text-sm text-gray-500 dark:text-gray-400 leading-relaxed mb-5 max-w-sm mx-auto" data-fr="Passionné par le développement d'outils simples et performants. Je crois que la technologie doit être accessible, libre et respectueuse des utilisateurs." data-en="Passionate about building simple and powerful tools. I believe technology should be accessible, free, and respectful of users.">Passionné par le développement d'outils simples et performants. Je crois que la technologie doit être accessible, libre et respectueuse des utilisateurs.</p>
         <div class="flex items-center justify-center gap-4">
-          <a href="https://github.com/akaletekoffilevis" target="_blank" class="text-gray-400 hover:text-brand-500 dark:hover:text-brand-400 transition-colors"><i class="fab fa-github text-lg"></i></a>
-          <a href="mailto:koffilevis21@gmail.com" class="text-gray-400 hover:text-brand-500 dark:hover:text-brand-400 transition-colors"><i class="fas fa-envelope text-lg"></i></a>
+          <a href="https://github.com/akaletekoffilevis" target="_blank" class="w-10 h-10 rounded-xl bg-gray-100 dark:bg-white/5 border border-gray-200 dark:border-white/10 flex items-center justify-center text-gray-400 hover:text-brand-500 hover:border-brand-300 dark:hover:text-brand-400 dark:hover:border-brand-500/30 transition-all"><i class="fab fa-github"></i></a>
+          <a href="mailto:koffilevis21@gmail.com" class="w-10 h-10 rounded-xl bg-gray-100 dark:bg-white/5 border border-gray-200 dark:border-white/10 flex items-center justify-center text-gray-400 hover:text-brand-500 hover:border-brand-300 dark:hover:text-brand-400 dark:hover:border-brand-500/30 transition-all"><i class="fas fa-envelope"></i></a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Roadmap -->
+    <div class="mb-16 sm:mb-20">
+      <h2 class="text-lg sm:text-xl font-bold text-gray-900 dark:text-white mb-6 sm:mb-8 text-center" data-fr="Feuille de route" data-en="Roadmap">Feuille de route</h2>
+      <div class="grid sm:grid-cols-3 gap-4 sm:gap-6">
+        <div class="p-6 rounded-2xl bg-gray-50 dark:bg-white/[0.02] border border-gray-100 dark:border-white/5 hover:border-brand-300 dark:hover:border-brand-500/30 transition-all">
+          <div class="inline-block px-2.5 py-1 rounded-lg bg-brand-100 dark:bg-brand-500/10 text-brand-600 dark:text-brand-400 text-xs font-bold mb-4">v0.3.0</div>
+          <h3 class="font-bold text-gray-900 dark:text-white mb-3" data-fr="Bientôt disponible" data-en="Coming soon">Bientôt disponible</h3>
+          <ul class="space-y-2">
+            <li class="flex items-center gap-2 text-sm text-gray-500 dark:text-gray-400"><i class="fas fa-check text-brand-500 dark:text-brand-400 text-xs"></i> <span data-fr="Lancement automatique" data-en="Auto-launch at startup">Lancement automatique</span></li>
+            <li class="flex items-center gap-2 text-sm text-gray-500 dark:text-gray-400"><i class="fas fa-check text-brand-500 dark:text-brand-400 text-xs"></i> <span data-fr="Icône dans la barre des tâches" data-en="System tray icon">Icône dans la barre des tâches</span></li>
+            <li class="flex items-center gap-2 text-sm text-gray-500 dark:text-gray-400"><i class="fas fa-check text-brand-500 dark:text-brand-400 text-xs"></i> <span data-fr="Associations de fichiers" data-en="File associations">Associations de fichiers</span></li>
+          </ul>
+        </div>
+        <div class="p-6 rounded-2xl bg-gray-50 dark:bg-white/[0.02] border border-gray-100 dark:border-white/5 hover:border-brand-300 dark:hover:border-brand-500/30 transition-all">
+          <div class="inline-block px-2.5 py-1 rounded-lg bg-gray-100 dark:bg-white/5 text-gray-500 dark:text-gray-400 text-xs font-bold mb-4">v0.4.0</div>
+          <h3 class="font-bold text-gray-900 dark:text-white mb-3" data-fr="En réflexion" data-en="Under consideration">En réflexion</h3>
+          <ul class="space-y-2">
+            <li class="flex items-center gap-2 text-sm text-gray-500 dark:text-gray-400"><i class="fas fa-check text-brand-500 dark:text-brand-400 text-xs"></i> <span data-fr="Système de plugins" data-en="Plugin system">Système de plugins</span></li>
+            <li class="flex items-center gap-2 text-sm text-gray-500 dark:text-gray-400"><i class="fas fa-check text-brand-500 dark:text-brand-400 text-xs"></i> <span data-fr="Magasin de thèmes" data-en="Themes store">Magasin de thèmes</span></li>
+          </ul>
+        </div>
+        <div class="p-6 rounded-2xl bg-gray-50 dark:bg-white/[0.02] border border-gray-100 dark:border-white/5 hover:border-brand-300 dark:hover:border-brand-500/30 transition-all">
+          <div class="inline-block px-2.5 py-1 rounded-lg bg-gray-100 dark:bg-white/5 text-gray-500 dark:text-gray-400 text-xs font-bold mb-4">v1.0.0</div>
+          <h3 class="font-bold text-gray-900 dark:text-white mb-3" data-fr="Vision long terme" data-en="Long-term vision">Vision long terme</h3>
+          <ul class="space-y-2">
+            <li class="flex items-center gap-2 text-sm text-gray-500 dark:text-gray-400"><i class="fas fa-check text-brand-500 dark:text-brand-400 text-xs"></i> <span data-fr="Support mobile" data-en="Mobile support">Support mobile</span></li>
+            <li class="flex items-center gap-2 text-sm text-gray-500 dark:text-gray-400"><i class="fas fa-check text-brand-500 dark:text-brand-400 text-xs"></i> <span data-fr="Synchronisation cloud" data-en="Cloud sync">Synchronisation cloud</span></li>
+          </ul>
         </div>
       </div>
     </div>
 
     <!-- License -->
-    <div class="max-w-lg mx-auto p-6 rounded-2xl bg-gray-50 dark:bg-white/[0.02] border border-gray-100 dark:border-white/5 text-center">
-      <div class="w-12 h-12 rounded-xl bg-green-100 dark:bg-green-500/10 flex items-center justify-center mx-auto mb-4">
-        <i class="fas fa-scale-balanced text-green-500 dark:text-green-400 text-lg"></i>
+    <div class="mb-16 sm:mb-20">
+      <div class="max-w-lg mx-auto p-6 rounded-2xl bg-gray-50 dark:bg-white/[0.02] border border-gray-100 dark:border-white/5 text-center">
+        <div class="w-12 h-12 rounded-xl bg-green-100 dark:bg-green-500/10 flex items-center justify-center mx-auto mb-4">
+          <i class="fas fa-scale-balanced text-green-500 dark:text-green-400 text-lg"></i>
+        </div>
+        <h3 class="font-bold text-gray-900 dark:text-white mb-2">MIT License</h3>
+        <p class="text-sm text-gray-500 dark:text-gray-400 mb-4" data-fr="Gratuit, libre, sans restriction. Vous pouvez copier, modifier et redistribuer le code sans limitation." data-en="Free, open, no restrictions. You can copy, modify, and redistribute the code without limitation.">Gratuit, libre, sans restriction. Vous pouvez copier, modifier et redistribuer le code sans limitation.</p>
+        <a href="https://github.com/akaletekoffilevis/youtube-downloader/blob/main/LICENSE" target="_blank" class="inline-flex items-center gap-2 text-sm font-medium text-brand-500 dark:text-brand-400 hover:text-brand-600 dark:hover:text-brand-300 transition-colors">
+          <i class="fas fa-external-link-alt text-xs"></i>
+          <span data-fr="Lire la licence complète" data-en="Read the full license">Lire la licence complète</span>
+        </a>
       </div>
-      <h3 class="font-bold text-gray-900 dark:text-white mb-2">MIT License</h3>
-      <p class="text-sm text-gray-500 dark:text-gray-400" data-fr="Gratuit, libre, sans restriction." data-en="Free, open, no restrictions.">Gratuit, libre, sans restriction.</p>
     </div>
+
+    <!-- CTA -->
+    <div class="text-center">
+      <a href="https://github.com/akaletekoffilevis/youtube-downloader" target="_blank" class="inline-flex items-center gap-2.5 px-6 py-3 rounded-xl bg-brand-500 hover:bg-brand-600 text-white font-semibold text-sm shadow-lg shadow-brand-500/20 hover:shadow-brand-500/30 hover:-translate-y-0.5 transition-all">
+        <i class="fab fa-github"></i>
+        <span data-fr="Contribuez sur GitHub" data-en="Contribute on GitHub">Contribuez sur GitHub</span>
+      </a>
+    </div>
+
   </div>
 </section>
 
