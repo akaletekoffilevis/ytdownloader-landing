@@ -182,6 +182,13 @@ async function loadDownloads() {
   try {
     const res=await fetch(API_URL); if(!res.ok)throw 0;
     const data=await res.json(), assets=data.assets||[];
+
+    // Show version badge
+    const vBadge = document.getElementById('version-badge');
+    if (vBadge && data.tag_name) {
+      vBadge.innerHTML = `<i class="fas fa-tag"></i> v${data.tag_name.replace(/^v/,'')} — ${data.name || 'Dernière version'}`;
+    }
+
     for(const[id,pats]of Object.entries(platformMap)){
       const el=document.getElementById(id); if(!el)continue;
       const matched=assets.filter(a=>pats.some(p=>p.test(a.name)));
